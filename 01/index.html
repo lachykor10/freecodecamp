@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>cuba destination survey</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<div>
+		<body>
+			<header>
+				<h1 id="title">Cuba Destination Survey Form</h1>
+				<h2><p id="description">Survey for travelers who have been in post-pandemic Cuba</p></h2>
+				<img
+					src="https://media.istockphoto.com/id/525352138/photo/street-with-cuban-flag-in-havana.jpg?s=612x612&w=0&k=20&c=1xN14oMdX-SlVX2Pt-SYcT8pp9HQ3lz4sOzWmKLasqI="
+					alt="Cuba"
+				/>
+			</header>
+
+			<form action="" id="survey-form">
+				<div>
+					<label for="name-label" id="name-label">Your Name:</label>
+					<input type="text" required id="name" name="name" placeholder="Your Full Name here!" />
+				</div>
+				<div>
+					<label for="email-label" id="email-label">Email:</label>
+					<input type="email" name="email" id="email" required placeholder="email here!" />
+				</div>
+				<div>
+					<label for="number-label" id="number-label">Days in Cuba: </label>
+					<input type="number" id="number" name="number" min="2" max="30" required placeholder="how many days were you in cuba" />
+				</div>
+				<div>
+					<p>What kind of trip did you do in Cuba??</p>
+					<select name="" id="dropdown">
+						<option disabled selected value>Select current role</option>
+						<option value="business">Business</option>
+						<option value="sexual">Sexual Turism</option>
+						<option value="family">Visit Family</option>
+						<option value="historical">Historical</option>
+						<option value="nature">Hiking or Nature</option>
+						<option value="beaches">Beaches</option>
+						<option value="music">Music and Dance</option>
+						<option value="culture">Culture Contact</option>
+						<option value="other">Other</option>
+					</select>
+				</div>
+				<div>
+					<p>Do you recommend a friend to travel to Cuba in these Post-Pandemic times?</p>
+					<label for=""><input type="radio" name="sames" value="yes" /> Yes!</label>
+					<label for=""><input type="radio" name="sames" value="not" /> Not!</label>
+					<label for=""><input type="radio" name="sames" value="maybe" /> Maybe!</label>
+				</div>
+				<div>
+					<p> What did you love most about Cuba?<span class="clue"> (Check all that apply)</span> </p>
+					<label for=""><input type="checkbox" name="" id="" value="old_cars" />Old Cars</label>
+					<label for=""><input type="checkbox" name="" id="" value="beaches" />Beaches</label>
+					<label for=""><input type="checkbox" name="" id="" value="weather" />Weather</label>
+					<label for=""><input type="checkbox" name="" id="" value="food" />Cuban Food</label>
+					<label for=""><input type="checkbox" name="" id="" value="rum" />Cuban Rum and cocktails</label>
+					<label for=""><input type="checkbox" name="" id="" value="hotels" />Hotels</label>
+					<label for=""><input type="checkbox" name="" id="" value="casas" />Casas de Alquileres</label>
+					<label for=""><input type="checkbox" name="" id="" value="people" />People</label>
+					<label for=""><input type="checkbox" name="" id="" value="bars" />Bars</label>
+					<label for=""><input type="checkbox" name="" id="" value="restaurants" />Restaurants</label>
+					<label for=""><input type="checkbox" name="" id="" value="art" />Art</label>
+					<label for=""><input type="checkbox" name="" id="" value="tabaco" />Tabaco</label>
+					<label for=""><input type="checkbox" name="" id="" value="hist_places" />Historical places</label>
+					<label for=""><input type="checkbox" name="" id="" value="hist_neigh" />Historical Cuban neighborhoods</label>
+					<label for=""><input type="checkbox" name="" id="" value="common_neigh" />Common Cuban neighborhoods</label>
+					<label for=""><input type="checkbox" name="" id="" value="countryside" />Countryside</label>
+					<label for=""><input type="checkbox" name="" id="" value="rivers" />Rivers</label>
+					<label for=""><input type="checkbox" name="" id="" value="medical" />Medical services</label>
+					<label for=""><input type="checkbox" name="" id="" value="politics" />Politics</label>
+					<label for=""><input type="checkbox" name="" id="" value="safety" />Street Safety</label>
+				</div>
+				<div>
+					<p>Any comments about Cuba?</p>
+					<textarea name="comentario" id="comentario" cols="30" rows="10" placeholder="Something remains, put it here!"></textarea>
+				</div>
+				<div class="form-group">
+					<button type="submit" id="submit" class="submit-button"> Submit </button>
+				</div>
+			</form>
+		</body>
+	</div>
+</html>
