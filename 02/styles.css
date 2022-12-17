@@ -89,3 +89,7 @@ li {
 	margin: 0 auto 50px auto;
 	text-align: left;
 }
+
+.text-center {
+	text-align: center;
+}
