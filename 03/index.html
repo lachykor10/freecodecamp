@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="styles.css" />
+		<title>Resume Tesis ELK mail Grock</title>
+	</head>
+	<body>
+		<nav id="navbar">
+			<header>Grok Constructor for ELK Documentation</header>
+			<ul>
+				<li><a class="nav-link" href="#Introduccion">Introduccion</a></li>
+				<li><a class="nav-link" href="#Instalacion_ELK">Instalacion ELK</a></li>
+				<li>
+					<a class="nav-link" href="#Lineas_Grock">Lineas Grock</a>
+				</li>
+				<li>
+					<a class="nav-link" href="#Creacion_patrones_grok">Creacion patrones grok</a>
+				</li>
+				<li><a class="nav-link" href="#Filtrado_Logstash">Filtrado Logstash</a></li>
+				<li><a class="nav-link" href="#Contenido_archivo">Contenido archivo</a></li>
+				<li>
+					<a class="nav-link" href="#Conclusiones">Conclusiones</a>
+				</li>
+				<li><a class="nav-link" href="#Referencias">Referencias</a></li>
+			</ul>
+		</nav>
+		<section id="main-doc">
+			<section class="main-section" id="Introduccion">
+				<header>Introduccion</header>
+				<article>
+					<p
+						>Grok es una colección de expresiones regulares con nombre que se pueden usar, por ejemplo, con logstash para analizar archivos de registro. Va
+						más allá al encontrar muchas expresiones regulares posibles que coinciden con un conjunto completo de líneas de archivo de registro mediante el
+						uso de patrones groks y cadenas fijas. Esto se puede hacer automáticamente (lo cual es de uso limitado solo para cosas pequeñas) o en un proceso
+						incremental. [10] Se empleó para la construcción de patrones.</p
+					>
+					<p>Gork Debugger Se utilizó en la depuración de patrones grok para diferentes fuentes de registro y darle uso en ELK</p>
+				</article>
+			</section>
+			<section class="main-section" id="Instalacion_ELK">
+				<header>Instalacion ELK</header>
+				<article>
+					<p>Para comenzar la implementación de esta herramienta se creó una máquina virtual con las propiedades siguientes:</p>
+					<p
+						>Tres microprocesadores de ocho núcleos a una frecuencia de 2.0 Ghz, con una memoria RAM de 8Gb y una capacidad de almacenamiento de 100Gb.
+						Partiendo de esto se instala sobre ella el sistema operativo (SO) Debian v.11</p
+					>
+					<ul>
+						<li>Paso 1: Actualizar los paquetes del sistema para comenzar su instalación.</li>
+						<li>Paso 2: Instalar Java en Debian 11</li>
+						<li>Paso 3: Se agrega el repositorio de Elastic Stack a Debian 10</li>
+						<li
+							>Paso 4: Instalar Elasticsearch en Debian 11 Configurar Elasticsearch para definir la dirección IP y el puerto de escucha. También se configura
+							el tipo de descubrimiento y el nombre del clúster. El archivo de configuración se encuentra en /etc/elasticsearch/elasticsearch.yml, También hay
+							que establecer el tamaño de almacenamiento dinámico de JVM aproximadamente en la memoria disponible en su sistema. Guardar el archivo, luego
+							iniciar y habilitar Elasticsearch.</li
+						>
+						<li
+							>Paso 5: Instalar Kibana en Debian 11, Una vez que Elasticsearch esté en funcionamiento, se instala Kibana con el siguiente comando: El archivo
+							de configuración predeterminado de Kibana se encuentra en /etc/kibana/kibana.yml. Se configura a continuación la dirección IP y el puerto como
+							se muestra a continuación y utilizar la siguiente configuración para configurar cómo se conecta Kibana a Elasticsearch</li
+						>
+					</ul>
+				</article>
+			</section>
+			<section class="main-section" id="Lineas_Grock">
+				<header>Lineas Grock</header>
+				<article>
+					<p
+						>Para lograr la efectiva introducción de datos por parte de Logstash y estructurar el texto contenido en los logs y luego enviarlo a
+						Elasticsearch, es necesario hacer un exhaustivo y cuidadoso análisis de cada línea de log que llega a Logstash y elaborar un patrón por cada una
+						de ellas que permitirá la obtención de los datos estructurados.</p
+					>
+					<p
+						>Primero es necesario identificar todas las posibles variaciones de líneas de logs recibidas, detallamos a continuación algunas de las
+						identificadas en nuestro caso de investigación.</p
+					>
+					<ul>
+						<li>Líneas logs que están llegando a Logstash en texto plano sin estructurar deben ser analizadas.</li>
+						<li>Variaciones detectadas de las líneas logs, se deben de crear una regla para cada entrada log</li>
+						<li>Chequeo de la estructuracion de los datos en la DataBase.</li>
+					</ul>
+				</article>
+			</section>
+			<section class="main-section" id="Creacion_patrones_grok">
+				<header>Creacion patrones grok</header>
+				<article>
+					<p>
+						Escribiremos y confeccionaremos el primer patrón para la primera línea que en este caso es:
+						<code>Oct 11 20:07:42 mx1 postfix/smtpd [1344]: connect from localhost.localdomain[127.0.0.1] </code>
+
+						En la que tenemos al comienzo una expresión de tiempo, luego el nombre del host, el identificador del servicio, su id, un mensaje de estado,
+						dominio e ip.</p
+					>
+					<p>
+						Hay dos partes principales de grok: expresiones regulares personalizadas y expresiones de patrones predefinidas por el sistema. A continuación, se
+						muestra un patrón creado para la línea log anterior:
+						<code>%{SYSLOGTIMESTAMP:syslog_timestamp} %{SYSLOGHOST:syslog_hostname}</code>
+
+						<code>%{DATA:syslog_program}(?:\[%{POSINT:syslog_pid}\])?: connect from %{HOSTNAME:dominio}\[%{IP:ip_conn}]</code>
+					</p>
+				</article>
+			</section>
+			<section class="main-section" id="Filtrado_Logstash">
+				<header>Filtrado Logstash</header>
+				<article>
+					<p>Implantación de la referencia y llamado en el archivo de configuración de filtrado en Logstash:</p>
+					<code
+						>filter { if [type] == "log" { grok { patterns_dir => "/etc/logstash/patrones" match => { "message" => [ "%{SMTPD_CLIENT}", "%{SMTPD_DISC}",
+						"%{SMTPD_CONN}", "%{SMTPD_CLIENT1}", "%{SMTPD_LOST}", "%{SMTPD_LOST1}", "%{SMTPD_NOQUEUE}", "%{SMTP_CONNECT}", "%{SMTP_TO}", "%{SMTP_TO2}",
+						"%{CLEANUP}", "%{QMGR}", "%{QMGR_R}",</code
+					>
+					<code
+						>"%{P_SCREEN_PASS}", "%{P_SCREEN_OLD}", "%{P_SCREEN_CON}", "%{P_SCREEN_W}", "%{PSCREEN_WA}", "%{FILTER_ACCEPT}", "%{FILTER_NEWMAIL}",
+						"%{PGM_DEFER}", "%{FILTER_KILL}", "%{PGM_END}", "%{PGM_START}", "%{GENERAL}" ] }
+					</code>
+				</article>
+			</section>
+			<section class="main-section" id="Contenido_archivo">
+				<header>Contenido archivo</header>
+				<article>
+					<p>Contenido del archivo de patrones personalizados implementados:</p>
+					<code
+						>#Analisis de Lineas LOGS POSTFIX/SMTPD SMTPD_CLIENT %{GENERICO} %{POSTFIX_QUEUEID:smtpd_queue_id}:
+						client=%{HOSTNAME:smtpd_client}\[%{IP:smtpd_ip_client}], orig_client=%{HOSTNAME:smtpd_orig_client}\[%{IP:ip_orig_client] SMTPD_DISC %{GENERICO}
+						disconnect from %{HOSTNAME:smtpd_disconnect_from}\[%{IP:smtpd_ipdiscon_from}] %{GREEDYDATA:s_syslog_message} SMTPD_CONN %{GENERICO} connect from
+						%{HOSTNAME:smtpd_conn_from}\[%{IP:smtpd_ip_conn_from}] SMTPD_CLIENT1 %{GENERICO} %{POSTFIX_QUEUEID:smtpc_queue_id}:
+						client=%{HOSTNAME:smtpd_client}\[%{IP:smtpd_ip_client}] SMTPD_LOST %{GENERICO} lost connection after CONNECT from
+						%{HOSTNAME:smtpd_lostconn_from}\[%{IP:smtpd_ip_lostconn_from}] SMTPD_LOST1 %{GENERICO} lost connection after EHLO from
+						%{HOSTNAME:smtpd_lostconn_from}\[%{IP:smtpd_ip_lostconn_from}] SMTPD_NOQUEUE %{GENERICO} NOQUEUE: reject: RCPT from
+						%{DATA:reject_from}\[%{IP:reject_ip_from}]: %{DATA:port} %{DATA:version} <%{DATA:reject_to}>: %{GREEDYDATA:s_syslog_message} #Analisis de Lineas
+						LOGS POSTFIX/SMTP SMTP_CONNECT %{GENERICO} connect to %{HOSTNAME:smtp_conn_to}?\[(%{IP:smtp_connip_to})\]%{GREEDYDATA:syslog_message} SMTP_TO
+						%{GENERICO} %{POSTFIX_QUEUEID:smtp_queue_id}: to=<%{HOSTNAME:smtp_to}>,
+						relay=%{HOSTNAME:smtp_relay}\[%{IP:smtp_ip_relay}]:%{NUMBER:smtp_port_relay},%{GREEDYDATA:s_syslog_message} SMTP_TO2 %{GENERICO}
+						%{POSTFIX_QUEUEID:smtpp_queue_id}: to=<%{DATA:smtp_to}>, relay=%{GREEDYDATA:s_syslog_message} #Analisis de Lineas LOGS POSTFIX/CLEANUP CLEANUP
+						%{GENERICO} %{POSTFIX_QUEUEID:clean_queue_id}: message-id=%{GREEDYDATA:s_syslog_message} #Analisis de Lineas LOGS POSTFIX/QMGR QMGR %{GENERICO}
+						%{POSTFIX_QUEUEID:qmgr_queue_id}: from=<%{DATA:qmgr_from}>, size=%{NUMBER:qmgr_size}, nrcpt=%{NUMBER:qmgr_nrcpt}%{GREEDYDATA:s_syslog_message}
+						QMGR_R %{GENERICO} %{POSTFIX_QUEUEID:qmgrr_queue_id}:%{GREEDYDATA:s_syslog_message} #Analisis de Lineas LOGS POSTFIX/LMTP LMTP %{GENERICO}
+						%{POSTFIX_QUEUEID:queue_id}: to=<%{DATA:lmtp_to}>, relay=%{HOSTNAME:lmtp_relay}\[%{IP:lmtp_ip_relay}]:%{NUMBER:lmtp_port_relay},
+						delay=%{DATA:lmtp_delay}, delays=%{DATA:lmtp_delay1}/%{DATA:lmtp_delay2}/%{DATA:lmtp_delay3}/%{DATA:lmtp_delay4}, dsn=%{DATA:lmtp_dsn},
+						status=%{WORD:lmtp_status} %{GREEDYDATA:s_syslog_message} #Analisis de Lineas LOGS POSTFIX/SCREEN P_SCREEN_PASS %{GENERICO} PASS NEW
+						\[%{IP:screen_ip}]:%{NUMBER:screen_port} P_SCREEN_OLD %{GENERICO} PASS OLD \[%{IP:screen_ip}]:%{NUMBER:screen_port} P_SCREEN_CON %{GENERICO}
+						CONNECT from \[%{IP:screen_ip_connfrom}]:%{NUMBER:screen_port_from} to \[%{IP:screen_ip_to}]:%{NUMBER:screen_port_to} P_SCREEN_W %{GENERICO}
+						WHITELISTED \[%{IP:screen_ip}]:%{NUMBER:screen_port} PSCREEN_WA %{GENERICO} warning: %{GREEDYDATA:s_syslog_message} #Analisis de Lineas LOGS
+						POSTFIX/FILTER FILTER_ACCEPT %{GENERICO} %{POSTFIX_QUEUEID:pgm_queue_id}: accept mail to <%{DATA:filter_acept_to}> \(%{POSTFIX_QUEUEID:queue_id}\)
+						%{GREEDYDATA:s_syslog_message} FILTER_NEWMAIL %{GENERICO} %{POSTFIX_QUEUEID:pgmnew_queue_id_referencial}: new mail
+						messageid=<%{DATA:filter_new_mail}>%{GREEDYDATA:s_syslog_message} FILTER_KILL %{GENERICO} Killing %{GREEDYDATA:s_syslog_message} PGM_END
+						%{GENERICO} end %{GREEDYDATA:s_syslog_message} PGM_START %{GENERICO} starting %{GREEDYDATA:s_syslog_message} PGM_DEFER %{GENERICO} defer
+						%{GREEDYDATA:s_syslog_message} #Analisis de Lineas LOGS GENERAL GENERICO %{SYSLOGTIMESTAMP:s_timestamp} %{SYSLOGHOST:s_host}
+						%{DATA:s_program}(?:\[%{POSINT:s_pid}\])?: POSTFIX_QUEUEID ([0-9A-F]{6,}|[0-9a-zA-Z]{12,}|NOQUEUE) GENERICO_Q %{GENERICO}
+						%{POSTFIX_QUEUEID:queue_id}: GENERAL %{SYSLOGTIMESTAMP:syslog_timestamp} %{SYSLOGHOST:syslog_hostname}
+						%{DATA:syslog_program}(?:\[%{POSINT:syslog_pid}\])?: %{GREEDYDATA:syslog_message}</code
+					>
+				</article>
+			</section>
+			<section class="main-section" id="Conclusiones">
+				<header>Conclusiones</header>
+				<article>
+					<p
+						>A partir del estudio del estado del arte, se demostró en este trabajo investigativo, la importancia del monitoreo de los servicios TI, en el
+						control global de la información que se genera a partir del tráfico de correos electrónicos a nivel global y específicamente en instituciones
+						cubanas como la Universidad de Oriente (UO).</p
+					>
+					<p
+						>De la misma manera al diseñar e implementar herramientas como ELK, para la gestión y monitoreo del servicio en la UOnet, se le da seguimiento a
+						la política de utilización de herramientas open sourse, y se le brinda solución a la problemática de tener información dispersa en cuatro
+						servidores MX, lo que facilitaría el efectivo trabajo de administradores de redes en la UO, haciendo uso de Dashboards, pero también en otras
+						instituciones tanto investigativas como de otra índole que pudieran tener la misma problemática.
+					</p>
+					<p
+						>Con la aplicación efectiva de los resultados obtenidos en esta investigación se logrará no solo acceso rápido y eficiente a información
+						anteriormente dispersa, además es una herramienta que perfecciona la seguridad informática en la UO y otras instituciones que la implementen.</p
+					>
+				</article>
+			</section>
+			<section class="main-section" id="Referencias">
+				<header>Referencias</header>
+				<article>
+					<ul>
+						<li>
+							All the documentation in this page is taken from
+							<a href="https://drive.google.com/file/d/1UATx3RGjH7d6QEaC2kyV4Y2yDl-RxEdG/view?usp=share_link" target="_blank">LCP Drive</a>
+						</li>
+						<li><a href="http://blog.alestra.com.mx/que-es-el-monitoreo-de-ti.">¿Qué es el monitoreo de TI?,» 03 01 2020. [En línea]. Available:</a></li>
+						<li
+							><a
+								href="https://www.monografias.com/docs/1-1-
+              Introduccion-al-uso-de-las-F32JELCMZ."
+								>«Introduccion al uso de las tecnologias de in formacion en las ingenerias,» 16 05 2020. [En línea</a
+							></li
+						>
+						<li
+							><a href="https://www.manageengine.com/latam/service-desk/itsm/guia-paraprincipiantes.html"
+								>¿Qué es ITSM? La guía para principiantes de ITSM (gestión de servicios de TI),» 26 05 2020. [En línea]</a
+							></li
+						>
+					</ul>
+				</article>
+			</section>
+		</section>
+	</body>
+</html>
