@@ -12,14 +12,13 @@
 	padding: 0;
 }
 
-/* box-sizing and font sizing kukuku */
+/* box-sizing and font sizing */
 *,
 *::before,
 *::after {
 	box-sizing: inherit;
 }
 
-/* formateo de tamanos html iniciales */
 html {
 	box-sizing: border-box;
 
@@ -67,12 +66,43 @@ html {
 	}
 }
 
-/* logo propiedades */
-#logo {
-	width: max(100px, 18vw);
-	background-color: #0a0a23;
-	aspect-ratio: 35 / 4;
-	padding: 0.4rem;
+/* Base styles */
+
+body {
+	font-family: "Poppins", sans-serif;
+	font-size: 1.8rem; /* 18px */
+	font-weight: 400;
+	line-height: 1.4;
+	color: var(--main-white);
+}
+
+h1,
+h2 {
+	font-family: "Raleway", sans-serif;
+	font-weight: 700;
+	text-align: center;
+}
+
+h1 {
+	font-size: 6rem;
+}
+
+h2 {
+	font-size: 4.2rem;
+}
+
+ul {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+	color: var(--main-white);
+}
+
+img {
+	display: block;
+	width: 100%;
 }
 
 /* nav */
@@ -114,46 +144,6 @@ html {
 	background: var(--main-blue);
 }
 
-/* Base styles ******************* */
-
-body {
-	font-family: "Poppins", sans-serif;
-	font-size: 1.8rem; /* 18px */
-	font-weight: 400;
-	line-height: 1.4;
-	color: var(--main-white);
-}
-
-h1,
-h2 {
-	font-family: "Raleway", sans-serif;
-	font-weight: 700;
-	text-align: center;
-}
-
-h1 {
-	font-size: 6rem;
-}
-
-h2 {
-	font-size: 4.2rem;
-}
-
-ul {
-	list-style: none;
-}
-
-a {
-	text-decoration: none;
-	color: var(--main-white);
-}
-
-img {
-	display: block;
-	width: 100%;
-}
-
-/* ****************!!!!!******************* */
 /* Welcome section */
 
 .welcome-section {
