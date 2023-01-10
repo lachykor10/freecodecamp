@@ -1,0 +1,24 @@
+console.log(myArray[1][0]) //muestra un arreglo anidado en pantalla
+
+//Arreglos funciones principales
+const myArray = [["John", 23], ["cat", 2]]; //ejemplo de declaracion de un arreglo complejo.
+.push() //toma uno o más parámetros y los "empuja" al final del arreglo.
+.pop() //elimina el último elemento de un arreglo y devuelve ese elemento.
+.shift() //elimina el primer elemento en lugar del último en el arreglo.
+.unshift() //añade el elemento al principio del arreglo.
+
+//ejemplo de funcion
+function functionName() {
+  console.log("Hello World");
+}
+//ejemplo de funcion
+function functionWithArgs(x, y) {
+  console.log(x+y);
+}
+//llamada con parametro de una funcion
+functionWithArgs(5,8)
+
+// ejemplo Muestra el código de un arreglo 
+console.log("Before: " + JSON.stringify(testArr));
+console.log(nextInLine(testArr, 6));
+console.log("After: " + JSON.stringify(testArr));
