@@ -22,3 +22,12 @@ functionWithArgs(5,8)
 console.log("Before: " + JSON.stringify(testArr));
 console.log(nextInLine(testArr, 6));
 console.log("After: " + JSON.stringify(testArr));
+
+//condicion de igualdad usada de dos formas
+3 == '3' devuelve true porque JavaScript realiza la conversión de tipo de cadena a número. 3 === '3' devuelve false porque los tipos son diferentes y la conversión de tipo no se realiza.
+
+El operador de desigualdad (!=) es lo opuesto al operador de igualdad. Esto quiere decir que no es igual, y devuelve false cuando la comparación de igualdad devuelva true y vice versa
+El operador de estricta desigualdad !== es el opuesto lógico del operador de estricta igualdad. Esto significa "Estrictamente Desigual",
+
+<,>,>=,<= //operadores de comparacion
+y && devuelve true cuando ambos son positivos, lógico or (||) devuelve true si cualquiera de los operandos es true
