@@ -6,6 +6,28 @@ const myArray = [["John", 23], ["cat", 2]]; //ejemplo de declaracion de un arreg
 .pop() //elimina el último elemento de un arreglo y devuelve ese elemento.
 .shift() //elimina el primer elemento en lugar del último en el arreglo.
 .unshift() //añade el elemento al principio del arreglo.
+[].hasOwnProperty() //obtiene la propiedad de una arreglo
+
+//La sintaxis es a ? b : c, donde a es la condición, b es el código a ejecutar cuando la condición devuelve true, y c es el código a ejecutar cuando la condición devuelve false.
+a > b ? "a is greater" : "b is greater or equal"; //ejemplo de lo explicado anterior
+//otro ejemplo mas detallado
+function findGreaterOrEqual(a, b) {
+  return (a === b) ? "a and b are equal" 
+    : (a > b) ? "a is greater" 
+    : "b is greater";
+}
+
+
+
+parseInt() //convierte cadena en un entero
+//ejemplo
+const a = parseInt("007");
+
+
+Math.random() //debuelve un numero aleatorio
+
+Math.floor(Math.random() * 20); //Estamos llamando a Math.random(), multiplicando el resultado por 20 y pasando el valor a la función Math.floor() para redondear el valor hacia abajo al número entero más cercano.
+
 
 //ejemplo de funcion
 function functionName() {
@@ -31,3 +53,179 @@ El operador de estricta desigualdad !== es el opuesto lógico del operador de es
 
 <,>,>=,<= //operadores de comparacion
 y && devuelve true cuando ambos son positivos, lógico or (||) devuelve true si cualquiera de los operandos es true
+
+//ejemplo de switch
+
+switch (num) {
+  case value1:
+    statement1;
+    break;
+  case value2:
+    statement2;
+    break;
+...
+  default:
+    defaultStatement;
+    break;
+}
+
+//ejemplo de objeto solo de cadenas
+const cat = {
+  "name": "Whiskers",
+  "legs": 4,
+  "tails": 1,
+  "enemies": ["Water", "Dogs"]
+};
+
+//ejemplo de objeto conbinado
+const anotherObject = {
+  make: "Ford",
+  5: "five",
+  "model": "focus"
+};
+
+//elimina una propiedad
+delete myDog.tails;
+//agrega una propiedad 
+myDog.brak="woof";
+
+///WHILE
+//While ejemplo Bucle
+const ourArray = [];
+let i = 0;
+
+while (i < 5) {
+  ourArray.push(i);
+  i++;
+}
+
+//bucle for
+/*for (a; b; c), donde a es la sentencia de inicialización, b es la sentencia condicional, y c es la expresión final*/
+//ejemplo de for
+const ourArray = [];
+
+for (let i = 0; i < 5; i++) {
+  ourArray.push(i);
+}
+//otra forma
+// Configuración
+const myArray = [];
+for(let i=1; i<=5; i++ ){
+  myArray.push(i);
+}
+//otra forma en pares
+const ourArray = [];
+for (let i = 0; i < 10; i += 2) {
+  ourArray.push(i);
+}
+//en pares pero decendiente
+const ourArray = [];
+for (let i = 10; i > 0; i -= 2) {
+  ourArray.push(i);
+}
+
+//for que muestra contenido de un arreglo.
+const arr = [10, 9, 8, 7, 6];
+for (let i = 0; i < arr.length; i++) {
+   console.log(arr[i]);
+}
+//sumando con for
+for(let i=0; i < myArr.length; i++){
+  console.log(myArr[i]);
+  total = total+ myArr[i];
+}
+
+******************************************************************
+function multiplyAll(arr) {
+  let product = 1;
+  // Cambia solo el código debajo de esta línea
+  for(let i=0; i<arr.length; i++){
+    for(let j=0; j<arr[i].length; j++){
+      product *= arr[i][j];
+      console.log(product)
+
+    }
+  
+  }
+  // Cambia solo el código encima de esta línea
+  return product;
+}
+
+multiplyAll([[1, 2], [3, 4], [5, 6, 7]]);
+***********************************************************************
+
+//Do While con condicion de parada
+const ourArray = []; 
+let i = 5;
+
+do {
+  ourArray.push(i);
+  i++;
+} while (i < 5);
+
+***********************************************************************
+// Setup
+const contacts = [
+  {
+    firstName: "Akira",
+    lastName: "Laine",
+    number: "0543236543",
+    likes: ["Pizza", "Coding", "Brownie Points"],
+  },
+  {
+    firstName: "Harry",
+    lastName: "Potter",
+    number: "0994372684",
+    likes: ["Hogwarts", "Magic", "Hagrid"],
+  },
+  {
+    firstName: "Sherlock",
+    lastName: "Holmes",
+    number: "0487345643",
+    likes: ["Intriguing Cases", "Violin"],
+  },
+  {
+    firstName: "Kristian",
+    lastName: "Vos",
+    number: "unknown",
+    likes: ["JavaScript", "Gaming", "Foxes"],
+  },
+];
+
+function lookUpProfile(name, prop) {
+  // Only change code below this line
+  for(let i=0; i<contacts.length;i++){
+    if(contacts[i].firstName===name){
+      if(contacts[i].hasOwnProperty(prop)){
+        return contacts[i][prop]
+        }
+      else {return "No such property"; }
+    
+    }
+  
+  }return "No such contact";
+  // Only change code above this line
+}
+
+lookUpProfile("Akira", "likes");
+*******************************************************************
+
+****funcion que convierte de binario a entero.
+function convertToInteger(str) {
+  return parseInt(str, 2);
+}
+
+;
+console.log(convertToInteger("10011"))
+***********************************************************************
+
+******//funcion de ejemplo que crea conteo regresivo
+function countdown(n) {
+  if (n < 1) {
+    return [];
+  } else {
+    const arr = countdown(n - 1);
+    arr.unshift(n);
+    return arr;
+  }
+}***********
