@@ -7,6 +7,55 @@ const myArray = [["John", 23], ["cat", 2]]; //ejemplo de declaracion de un arreg
 .shift() //elimina el primer elemento en lugar del último en el arreglo.
 .unshift() //añade el elemento al principio del arreglo.
 [].hasOwnProperty() //obtiene la propiedad de una arreglo
+Object.freeze(obj) //nadie pueda alterar el valor del obj, añadir o borrar sus propiedades.
+
+
+//Ejemplo de Clase en JS ES6 Explicit
+class Vegetable {
+  constructor(name){
+    this.name=name;
+  }
+}
+//Ejemplo de Clase en JS ES6 implicit
+class Rocket {
+  launch() {
+    console.log("To the moon!");
+  }
+}
+
+//FUNCION TIPO FLECHA
+const magic = () => new Date(); //la sintaxis de "función de flecha", te permite omitir la palabra clave return, así como los corchetes que rodean el código. Esto ayuda a simplificar las funciones más pequeñas en sentencias de una sola línea.
+
+const greeting = `Hello, my name is ${person.name}! I am ${person.age} years old.`;//
+
+
+const doubler = (item) => item * 2; //ejemplo pasandole un argumento.
+//Si una función flecha tiene un solo parámetro, los paréntesis que encierran el parámetro pueden ser omitidos.
+const doubler = item => item * 2;
+
+
+//esto se puede cambiar
+const sum = (x, y, z) => {
+  const args = [x, y, z];
+  return args.reduce((a, b) => a + b, 0);
+}
+//por esto de aqui vvvvvvvvvvvv
+const sum = (...args) => args.reduce((a, b) => a + b, 0);//el uso del parámetro rest para los parámetros de función. Con el parámetro rest, puedes crear funciones que tomen un número variable de argumentos. Estos argumentos se almacenan en un arreglo al que se puede acceder más tarde desde dentro de la función.
+
+arr2 = [...arr1];//ejemplo de copiado del contenido de un arreglo en otro usando argumento rest 
+const {today, tomorrow} = HIGH_TEMPERATURES; //forma de sacar de un objeto dada las propiedades.
+const {today:highToday,tomorrow:highTomorrow} =HIGH_TEMPERATURES; //pasar contenido a un objeto.
+
+
+//Así es como se extraen los valores de propiedades de objetos y se los asigna a variables con el mismo nombre:
+const { johnDoe: { age, email }} = user;
+//Y así es como se puede asignar los valores de las propiedades de un objeto a variables con diferentes nombres:
+const { johnDoe: { age: userAge, email: userEmail }} = user;
+
+[a,b] = [b,a];//intercambia valores viceversa (desestructuración de arreglos)
+
+//velo de la siguiente forma vvvvvvvv
+const [a, b, ...arr] = [1, 2, 3, 4, 5, 7]; //si quieres obtener un nuemro del siguiente arreglo das la letra, si quieres obtener el resto usas ...arr, para saltar usas la coma sola.
 
 //La sintaxis es a ? b : c, donde a es la condición, b es el código a ejecutar cuando la condición devuelve true, y c es el código a ejecutar cuando la condición devuelve false.
 a > b ? "a is greater" : "b is greater or equal"; //ejemplo de lo explicado anterior
@@ -229,3 +278,37 @@ function countdown(n) {
     return arr;
   }
 }***********
+
+
+********************* ES6
+const person = {
+  name: "Zodiac Hasbro",
+  age: 56
+};
+
+const greeting = `Hello, my name is ${person.name}!
+I am ${person.age} years old.`;
+
+console.log(greeting);
+//La consola mostrará las cadenas Hello, my name is Zodiac Hasbro! y I am 56 years old..
+******************************
+************************************************************
+const result = {
+  success: ["max-length", "no-amd", "prefer-arrow-functions"],
+  failure: ["no-var", "var-on-top", "linebreak"],
+  skipped: ["no-extra-semi", "no-dup-keys"]
+};
+function makeList(arr) {
+  // Cambia solo el código debajo de esta línea
+  const failureItems = [];
+  for(let i=0; i<arr.length; i++){
+    failureItems.push(`<li class="text-warning">${arr[i]}</li>`)
+  }
+  // Cambia solo el código encima de esta línea
+
+  return failureItems;
+}
+
+const failuresList = makeList(result.failure);
+
+*********************************
