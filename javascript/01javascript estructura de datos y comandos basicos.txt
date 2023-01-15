@@ -312,3 +312,29 @@ function makeList(arr) {
 const failuresList = makeList(result.failure);
 
 *********************************
+
+*************************************
+//Funcion que convierte de Fha a Celsius
+// Cambia solo el código debajo de esta línea
+class Thermostat {
+  constructor (f){
+    this._f=f;
+  }
+  //getter
+  get temperature(){
+    return 5/9 * (this._f - 32);
+  }
+  //setter
+  set temperature(updateF){
+    this._f=updateF * 9.0 / 5 + 32;
+  }
+
+}
+// Cambia solo el código encima de esta línea
+
+const thermos = new Thermostat(76); // Ajuste en escala Farenheit
+let temp = thermos.temperature; // 24.44 en Celsius
+console.log(thermos.temperature)
+thermos.temperature = 26;
+temp = thermos.temperature; // 26 en Celsius
+******************************************************

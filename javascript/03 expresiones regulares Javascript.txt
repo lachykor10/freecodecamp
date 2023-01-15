@@ -1,0 +1,8 @@
+//.test() toma la expresión regular, la aplica a una cadena (que se coloca dentro de los paréntesis), y devuelve true o false si tu patrón encuentra algo o no.
+
+let testStr = "freeCodeCamp";
+let testRegex = /Code/;
+testRegex.test(testStr);
+//El método test aquí^^^^^^^^ devuelve true.
+
+**********************************************

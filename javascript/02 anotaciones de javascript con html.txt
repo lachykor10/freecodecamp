@@ -1,0 +1,70 @@
+//ejemplo de script en tu documento HTML con un type de module
+<script type="module" src="filename.js"></script> //Un script que utilice este module ahora podrá utilizar las caraterísticas import y export, sobre las que aprenderás en los próximos desafíos.
+//ejemplo de su uso en HTML ^^^^vvvvvvvvvvvv
+<html>
+  <body>
+    <!-- Cambia solo el código debajo de esta línea -->
+    <script type="module" src="index.js"></script>
+    <!-- Cambia solo el código encima de esta línea -->
+  </body>
+</html>
+*****************************************************
+//ejemplo de EXPORTACION de funciones o variables
+//forma menos usada
+export const add = (x, y) => {
+  return x + y;
+}
+//forma mas usada
+const add = (x, y) => {
+  return x + y;
+}
+
+let variable = 0;
+
+export { add, variable };
+********************************************************
+//Ejemplo de como se importa parte de un archivo o mudulo
+//Así es como puedes importarlo para utilizarlo en otro archivo
+import { add } from './math_functions.js'; 
+//Puedes importar más de un elemento del archivo, añadiéndolos en la declaración import
+import { add, subtract } from './math_functions.js';
+//Se importa todo un archivo
+import * as myMathModule from "./math_functions.js";//vvvvvvv
+//puedes usar las funcionesVVVVVVVVVVV importadas add y subtract de esta formaVVVVVvvvvv
+myMathModule.add(2,3);
+myMathModule.subtract(5,3);
+**********************************************************************
+//export default es usado para declarar un valor fallback para un módulo o archivo, sólo puedes tener un valor que sea exportación por defecto en cada módulo o archivo. Además, no puedes usar export default con var, let, o const
+export default function subtract(x, y) {
+  return x - y;
+}
+************************************************************************
+//ejemplo de importacion default
+import subtract from "./math_functions.js";
+****************************************************************************
+*****************************************************************************
+//Promise es una función constructora, así que tu necesitas usar la palabra clave new para crear una. Recibe una función como su argumento, con dos parámetros: resolve y reject. Estos métodos se utilizan para determinar el resultado de la promesa.
+const myPromise = new Promise((resolve, reject) => {
+
+}); //esta esta en estado pending porque no tiene forma de terminar la promesa.
+//estados de una promesa: pending, fulfilled, y rejected
+//ejeplo de una funcionVvvvvvv
+const myPromise = new Promise((resolve, reject) => {
+  if(condition here) {
+    resolve("Promise was fulfilled");
+  } else {
+    reject("Promise was rejected");
+  }
+});
+//vvvv^^^^^^VVVEl método then, se ejecuta inmediatamente después de que tu promesa se cumple con resolve.
+myPromise.then(result => {
+	console.log(result);
+});
+//catch vvvvvvvves el método utilizado cuando tu promesa ha sido rechazada, y se ejecuta el codigo
+
+myPromise.catch(error => {
+	console.log(error);
+});
+*********************************************************************
+
+
