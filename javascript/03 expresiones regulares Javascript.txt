@@ -4,5 +4,24 @@ let testStr = "freeCodeCamp";
 let testRegex = /Code/;
 testRegex.test(testStr);
 //El método test aquí^^^^^^^^ devuelve true.
-
+//otro ejemplo
+let testStr = "Hello, my name is Kevin.";
+let testRegex = /Kevin/;//Puedes buscar múltiples patrones usando el operador alternation o OR: | ejemplo: /dog|cat|bird|fish/ ejemplo:/ignorecase/i. Esta expresión regular puede coincidir con las cadenas ignorecase, igNoreCase e IgnoreCase
+testRegex.test(testStr);
+//esto devuelve true
 **********************************************
+//También puedes extraer las coincidencias encontradas con el método .match()
+"Hello, World!".match(/Hello/);
+let ourStr = "Regular expressions";
+let ourRegex = /expressions/;
+ourStr.match(ourRegex);
+//extraer un patrón más de una vez, puedes utilizar la bandera g
+let repeatRegex = /Repeat/g; //En tu expresión regular puedes utilizar múltiples banderas, como /Repeat/gi
+testStr.match(repeatRegex);
+//lo anterior^^^ devolvera un arreglo con los datos coincidientes.
+
+
+
+
+
+
