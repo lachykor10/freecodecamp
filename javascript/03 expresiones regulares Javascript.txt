@@ -19,7 +19,38 @@ ourStr.match(ourRegex);
 let repeatRegex = /Repeat/g; //En tu expresión regular puedes utilizar múltiples banderas, como /Repeat/gi
 testStr.match(repeatRegex);
 //lo anterior^^^ devolvera un arreglo con los datos coincidientes.
-
+********************************************************************
+//si quieres hacer coincidir hug, huh, hut, y hum, puedes usar la la expresión regular /hu./ para que coincida con las cuatro palabras.
+let humStr = "I'll hum a song";
+let hugStr = "Bear hug";
+let huRegex = /hu./;
+huRegex.test(humStr);
+huRegex.test(hugStr);
+^*************************************************************
+//la expresión regular /b[aiu]g/ para hacer esto. [aiu] es la clase de caracteres que solo coincidirá con los caracteres a, i, o u.
+//ejemplo
+let bigStr = "big";
+let bagStr = "bag";
+let bugStr = "bug";
+let bogStr = "bog";
+let bgRegex = /b[aiu]g/;
+bigStr.match(bgRegex);
+bagStr.match(bgRegex);
+bugStr.match(bgRegex);
+bogStr.match(bgRegex);
+//En orden,esto^^^^ las cuatro llamadas de match devolverán los valores ["big"], ["bag"], ["bug"], and null.
+*******************************************
+//Por ejemplo, /[0-5]/ coincide con cualquier número entre 0 y 5, incluyendo 0 y 5.
+//Además, es posible combinar un rango de letras y números en un único conjunto de caracteres.
+let jennyStr = "Jenny8675309";
+let myRegex = /[a-z0-9]/ig;
+jennyStr.match(myRegex);
+//caracteres negados colocas un carácter de intercalación (^) después del corchete de apertura y antes de los caracteres que no quieres coincidir.
+//Por ejemplo, /[^aeiou]/gi coincide con todos los caracteres que no son una vocal. 
+let quoteSample = "3 blind mice.";
+let myRegex = /[^0-9aeiou]/gi; //expresión regular coincide con todos los caracteres que NO son un número o una vocal 
+let result = quoteSample.match(myRegex);
+*****************************************************************
 
 
 
