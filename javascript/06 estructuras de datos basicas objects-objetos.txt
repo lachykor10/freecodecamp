@@ -1,0 +1,123 @@
+//foods es un objeto
+foods[uvas]=35; //esto asigna
+foods[uvas]; //esto devuelve
+foods.bananas = 13;//esto asigna
+delete foods.apples; //esto elimina la propiedad apples
+foods.hasOwnProperty('bananas'); //como saber si un objeto tiene una propiedad específica devuelve True si existe.
+'bananas' in foods; //otra forma de como saber si un objeto tiene una propiedad específica devuelve True si existe.
+
+///*********for...in*************
+//sintaxis específica en JavaScript llamada sentencia for...in.
+//esta sentencia, definimos una variable food, y como puedes ver,
+//esta variable se restablece durante cada iteración a cada una de las claves del objeto a medida que la sentencia hace un bucle a través del objeto,
+//dando como resultado que el nombre de cada fruta se imprima en la consola.
+for (let food in foods) {
+  console.log(food);
+}
+//***************************************
+
+//ejemplo de declaracion de objeto
+const tekkenCharacter = {
+  player: 'Hwoarang',
+  fightingStyle: 'Tae Kwon Doe',
+  human: true
+};
+//formas de incluir una propiedad en el objeto
+tekkenCharacter.origin = 'South Korea'; //agrega la propiedad origin y la establece como 'South Korea'
+tekkenCharacter['hair color'] = 'dyed orange'; //forma si tu propiedad tiene espacio 
+//o utilizando variable vvvv para nombrar la propiedad.
+const eyes = 'eye color'; //la propiedad se llamara 'eye color' la meto dentro de la variable
+tekkenCharacter[eyes] = 'brown'; //asignando el contenido de la variable eyes a tekkenCharacter, asi se creara la propiedad (eye color) y se le asigna como contenido 'brown'
+//--------------------------------
+//Tras agregar todos los ejemplos, el objeto anterio^^^^ se verá así:
+
+{
+  player: 'Hwoarang',
+  fightingStyle: 'Tae Kwon Doe',
+  human: true,
+  origin: 'South Korea',
+  'hair color': 'dyed orange',
+  'eye color': 'brown'
+};
+///****************************************/
+//Ejemplo llenando un objeto usando las dos formas
+let foods = {
+  apples: 25,
+  oranges: 32,
+  plums: 28
+};
+foods.bananas = 13;
+let uvas ="grapes"
+foods[uvas]=35; //esto asigna
+foods[uvas]; //esto devuelve.
+foods.strawberries=27;
+console.log(foods);
+//*****************************************************
+nestedObject.data.onlineStatus.busy = 10; //utilizamos la notación de puntos para referenciar la propiedad
+//asi se modifica un objeto complejo vvvv
+let nestedObject = {
+  id: 28802695164,
+  date: 'December 31, 2016',
+  data: {
+    totalUsers: 99,
+    online: 80,
+    onlineStatus: {
+      active: 67,
+      away: 13,
+      busy: 10
+    }
+  }
+};
+//***********************************
+//Tenemos una función que establece selectedFood y queremos revisar en nuestro objeto foods si ese alimento está presente. Esto podría verse así:
+let selectedFood = getCurrentFood(scannedItem); 
+let inventory = foods[selectedFood];
+//ejemploVVVVVvvvv esto funciona si me se el nombre de la propiedad que en este caso es apples.
+let foods = {
+  apples: 25,
+  oranges: 32,
+  plums: 28,
+  bananas: 13,
+  grapes: 35,
+  strawberries: 27
+};
+function checkInventory(scannedItem) {
+  return foods[scannedItem]; 
+}
+console.log(checkInventory("apples")); //esto devuelve 25
+//****************************************************************
+//eliminandos propiedades del objeto de encima^^^^^^^
+delete foods.oranges;
+delete foods.plums;
+delete foods.strawberries;
+console.log(foods);
+//******************************************************
+Ejemplo de buscar propiedades si se encuentran dentro de un objeto
+let users = {
+  Alan: {
+    age: 27,
+    online: true
+  },
+  Jeff: {
+    age: 32,
+    online: true
+  },
+  Sarah: {
+    age: 48,
+    online: true
+  },
+  Ryan: {
+    age: 19,
+    online: true
+  }
+};
+//funcion que devuelve si estan, note que puse dentro del if, las dos formas de comprobar si esta la propiedad
+function isEveryoneHere(userObj) {
+  if('Alan' in userObj&&userObj.hasOwnProperty('Jeff')&&'Sarah' in userObj&&'Ryan' in userObj){
+    return true;
+  }
+  return false;
+}
+
+console.log(isEveryoneHere(users));
+//**************************************************************************************************************

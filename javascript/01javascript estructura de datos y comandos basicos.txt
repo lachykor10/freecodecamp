@@ -8,6 +8,7 @@ const myArray = [["John", 23], ["cat", 2]]; //ejemplo de declaracion de un arreg
 .unshift() //añade el elemento al principio del arreglo.
 [].hasOwnProperty() //obtiene la propiedad de una arreglo
 Object.freeze(obj) //nadie pueda alterar el valor del obj, añadir o borrar sus propiedades.
+console.log(`Sum of array values is: ${arraySum}`);//ejemplo de imprimir variable en cadena de forma facil.
 
 
 //Ejemplo de Clase en JS ES6 Explicit

@@ -1,0 +1,31 @@
+console.log()//muestra tipo de archivo log
+console.clear()//limpia la consola del navegador
+
+typeof //comprueba la estructura de datos, o tipo, de una variable.
+//ejemplo:
+console.log(typeof "");
+console.log(typeof 0);
+console.log(typeof []);
+console.log(typeof {});
+//En orden^^^^, la consola mostrará las cadenas string, number, object, y object.
+
+//La siguiente función debe crear un arreglo bidimensional (matriz) con m filas (rows) y n columnas (columns) de ceros. Desafortunadamente, no está produciendo la salida esperada porque la variable row no está siendo reiniciada (devuelta a un arreglo vacío) en el bucle exterior. Corrige el código para que devuelva una matriz 3x2 de ceros correcta, que se parezca a [[0, 0], [0, 0], [0, 0]]
+function zeroArray(m, n) {
+  // Crea un arreglo de 2 dimensiones con m filas y n columnas de ceros
+  let newArray = [];
+  let row = [];
+  for (let i = 0; i < m; i++) {
+    // se inicializa a cero 'row' para volver a ser usada en el for anidado, sino se dupilica.
+    row=[];
+    for (let j = 0; j < n; j++) {
+      // Inserta n ceros a la fila actual para crear las columnas
+      row.push(0);
+    }
+    // Inserta la fila actual, que ahora contiene n ceros, al arreglo
+    newArray.push(row);
+  }
+  return newArray;
+}
+
+let matrix = zeroArray(3, 2);
+console.log(matrix);
