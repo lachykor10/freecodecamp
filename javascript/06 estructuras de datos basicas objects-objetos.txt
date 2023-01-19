@@ -5,6 +5,8 @@ foods.bananas = 13;//esto asigna
 delete foods.apples; //esto elimina la propiedad apples
 foods.hasOwnProperty('bananas'); //como saber si un objeto tiene una propiedad específica devuelve True si existe.
 'bananas' in foods; //otra forma de como saber si un objeto tiene una propiedad específica devuelve True si existe.
+Object.keys(foods); //devuelve un arreglo que contiene todas las claves almacenadas en el objeto dado.//ejemplo mas abajo.
+
 
 ///*********for...in*************
 //sintaxis específica en JavaScript llamada sentencia for...in.
@@ -14,6 +16,11 @@ foods.hasOwnProperty('bananas'); //como saber si un objeto tiene una propiedad e
 for (let food in foods) {
   console.log(food);
 }
+//modo complejo
+for (let food in foods){
+    console.log(foods[food].propiedad)
+	}
+
 //***************************************
 
 //ejemplo de declaracion de objeto
@@ -121,3 +128,81 @@ function isEveryoneHere(userObj) {
 
 console.log(isEveryoneHere(users));
 //**************************************************************************************************************
+//Iteracion con for in en un objeto, ejemplo de funcion que devuelve si online tiene true.
+const users = {
+  Alan: {
+    online: false
+  },
+  Jeff: {
+    online: true
+  },
+  Sarah: {
+    online: false
+  }
+}
+
+function countOnline(usersObj) {
+  let conteo=0;
+  for (let user in usersObj){
+    if(usersObj[user].online==true)
+      {conteo++;}
+  }
+  return conteo;
+}
+console.log(countOnline(users));//esto devuele la cantidad de usuarios que tienen en la propiedad online true.
+//***********************************************************************************************
+//*********Object.keys ejemplo*****************
+let users = {
+  Alan: {
+    age: 27,
+    online: false
+  },
+  Jeff: {
+    age: 32,
+    online: true
+  },
+  Sarah: {
+    age: 48,
+    online: false
+  },
+  Ryan: {
+    age: 19,
+    online: true
+  }
+};
+
+function getArrayOfUsers(obj) {
+  let arr =[];
+  arr=Object.keys(obj);
+  return arr;
+}
+console.log(getArrayOfUsers(users));
+///******************************************************
+//********FINALLLLLLL************************
+let user = {
+  name: 'Kenneth',
+  age: 28,
+  data: {
+    username: 'kennethCodesAllDay',
+    joinDate: 'March 26, 2016',
+    organization: 'freeCodeCamp',
+    friends: [
+      'Sam',
+      'Kira',
+      'Tomo'
+    ],
+    location: {
+      city: 'San Francisco',
+      state: 'CA',
+      country: 'USA'
+    }
+  }
+};
+
+function addFriend(userObj, friend) {
+  userObj.data.friends.push(friend); //mete en el arreglo dentro del objeto
+  return userObj.data.friends.slice(); //devuelve el arreglo dentro del objeto.
+}
+
+console.log(addFriend(user, 'Pete')); //devuele un arreglo friends que esta dentro del objeto dado un friend.
+//*********************************************************
