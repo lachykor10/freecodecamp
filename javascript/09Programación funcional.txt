@@ -1,0 +1,200 @@
+//************************************************************************************************************
+
+// Función que retorna una cadena de texto representando una taza de té verde
+const prepareTea = () => 'greenTea';
+
+/*
+Dada una función (representando el tipo de té) y el número de tazas necesarias, la 
+    siguiente función retorna un arreglo de cadenas de texto (cada una representando un tipo específico de té).
+*/
+const getTea = (numOfCups) => {
+  const teaCups = [];
+
+  for(let cups = 1; cups <= numOfCups; cups += 1) {
+    const teaCup = prepareTea();
+    teaCups.push(teaCup);
+  }
+  return teaCups;
+};
+
+// Cambia solo el código debajo de esta línea
+const tea4TeamFCC = getTea(40);
+// Cambia solo el código encima de esta línea
+//************************************************************************************************************
+// Función que retorna una cadena de texto representando una taza de té verde
+const prepareGreenTea = () => 'greenTea';
+
+// Función que retorna una cadena de texto representando una taza de té negro
+const prepareBlackTea = () => 'blackTea';
+
+/*
+Dada una función (representando el tipo de té) y el número de tazas necesarias, la 
+    siguiente función retorna un arreglo de cadenas de texto (cada una representando un tipo específico de té).
+*/
+const getTea = (prepareTea, numOfCups) => {
+  const teaCups = [];
+
+  for(let cups = 1; cups <= numOfCups; cups += 1) {
+    const teaCup = prepareTea();
+    teaCups.push(teaCup);
+  }
+  return teaCups;
+};
+
+// Cambia solo el código debajo de esta línea
+const tea4GreenTeamFCC = getTea(prepareGreenTea, 27);
+const tea4BlackTeamFCC = getTea(prepareBlackTea, 13);
+// Cambia solo el código encima de esta línea
+
+console.log(
+  tea4GreenTeamFCC,
+  tea4BlackTeamFCC
+);
+//************************************************************************************************************
+// tabs es un arreglo de títulos de cada sitio abierto dentro de la ventana
+const Window = function(tabs) {
+  this.tabs = tabs; // Mantenemos un registro del arreglo dentro del objeto
+};
+
+// Cuando unes dos ventanas en una
+Window.prototype.join = function(otherWindow) {
+  this.tabs = this.tabs.concat(otherWindow.tabs);
+  return this;
+};
+
+// Cuando abres una nueva pestaña al final
+Window.prototype.tabOpen = function(tab) {
+  this.tabs.push('new tab'); // Abramos una nueva pestaña por ahora
+  return this;
+};
+
+// Cuando cierras una pestaña
+Window.prototype.tabClose = function(index) {
+
+  // Cambia solo el código debajo de esta línea
+
+  const tabsBeforeIndex = this.tabs.splice(0, index); // Obtiene las pestañas antes de la pestaña
+  const tabsAfterIndex = this.tabs.splice(1); // Obtiene las pestañas después de la pestaña
+
+  this.tabs = tabsBeforeIndex.concat(tabsAfterIndex); // Únelos juntos
+
+  // Cambia solo el código encima de esta línea
+
+  return this;
+ };
+
+// Vamos a crear tres ventanas del navegador
+const workWindow = new Window(['GMail', 'Inbox', 'Work mail', 'Docs', 'freeCodeCamp']); // Tu casilla de correo, drive y otros sitios de trabajo
+const socialWindow = new Window(['FB', 'Gitter', 'Reddit', 'Twitter', 'Medium']); // Sitios sociales
+const videoWindow = new Window(['Netflix', 'YouTube', 'Vimeo', 'Vine']); // Sitios de entretenimiento
+
+// Ahora completa la apertura de la pestaña, cierre, y otras operaciones
+const finalTabs = socialWindow
+  .tabOpen() // Abre una nueva pestaña para memes de gatos
+  .join(videoWindow.tabClose(2)) // Cierra la tercera pestaña en videoWindow y une
+  .join(workWindow.tabClose(1).tabOpen());
+console.log(finalTabs.tabs);
+//************************************************************************************************************
+//************************************************************************************************************
+// La variable global
+const bookList = ["The Hound of the Baskervilles", "On The Electrodynamics of Moving Bodies", "Philosophiæ Naturalis Principia Mathematica", "Disquisitiones Arithmeticae"];
+
+// Cambia el código debajo de esta línea
+function add(arr, bookName) {
+  let newArr=[...arr];// Copy the bookList array to a new array forma correcta.
+  newArr.push(bookName);
+  return newArr;
+
+}
+
+function remove(arr,bookName) {
+  let newArr=[...arr];// Copy the bookList array to a new array forma correcta.
+  if(newArr.indexOf(bookName)>=0){
+    // IndexOf chequea si esta bookname dentro del arreglo y devuelve su indice, si no encuentra devuelve -1.
+    newArr.splice(newArr.indexOf(bookName),1);
+    //splice elimina y devuelve lo eliminado(posicion del elemento encontrado por indexOf, cantidad a eliminar despues del encontrado)
+    return newArr;
+  }
+  
+}
+//************************************************************************************************************
+//****************USANDO MAP ITERANDO EN UN ARREGLO**********************************************************************
+// La variable global
+const watchList = [
+  {
+    "Title": "Inception",
+    "Year": "2010",
+    "Rated": "PG-13",
+    "Released": "16 Jul 2010",
+    "Runtime": "148 min",
+    "Genre": "Action, Adventure, Crime",
+    "Director": "Christopher Nolan",
+    "Writer": "Christopher Nolan",
+    "Actors": "Leonardo DiCaprio, Joseph Gordon-Levitt, Elliot Page, Tom Hardy",
+    "Plot": "A thief, who steals corporate secrets through use of dream-sharing technology, is given the inverse task of planting an idea into the mind of a CEO.",
+    "Language": "English, Japanese, French",
+    "Country": "USA, UK",
+    "Awards": "Won 4 Oscars. Another 143 wins & 198 nominations.",
+    "Poster": "http://ia.media-imdb.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
+    "Metascore": "74",
+    "imdbRating": "8.8",
+    "imdbVotes": "1,446,708",
+    "imdbID": "tt1375666",
+    "Type": "movie",
+    "Response": "True"
+  },
+  {
+    "Title": "Interstellar",
+    "Year": "2014",
+    "Rated": "PG-13",
+    "Released": "07 Nov 2014",
+    "Runtime": "169 min",
+    "Genre": "Adventure, Drama, Sci-Fi",
+    "Director": "Christopher Nolan",
+    "Writer": "Jonathan Nolan, Christopher Nolan",
+    "Actors": "Ellen Burstyn, Matthew McConaughey, Mackenzie Foy, John Lithgow",
+    "Plot": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+    "Language": "English",
+    "Country": "USA, UK",
+    "Awards": "Won 1 Oscar. Another 39 wins & 132 nominations.",
+    "Poster": "http://ia.media-imdb.com/images/M/MV5BMjIxNTU4MzY4MF5BMl5BanBnXkFtZTgwMzM4ODI3MjE@._V1_SX300.jpg",
+    "Metascore": "74",
+    "imdbRating": "8.6",
+    "imdbVotes": "910,366",
+    "imdbID": "tt0816692",
+    "Type": "movie",
+    "Response": "True"
+  }
+ 
+];
+
+// Cambia solo el código debajo de esta línea
+
+const ratings = watchList.map(watch =>{
+  return {title: watch.Title, rating: watch.imdbRating}
+});
+
+/*const ratings = watchList.map(item => {
+return { title: item["Title"], rating: item["imdbRating"]}
+});*/
+
+/*for (let i = 0; i < watchList.length; i++) {
+  ratings.push({title: watchList[i]["Title"], rating: watchList[i]["imdbRating"]});
+}*/
+
+// Cambia solo el código encima de esta línea
+
+console.log(JSON.stringify(ratings));
+//************************************************************************************************************
+//**************Metodo map() por dentro*****************************************************************************************
+Array.prototype.myMap = function(callback) {
+  const newArray = [];
+  // Only change code below this line
+  for (let i = 0; i < this.length; i++) {
+    newArray.push(callback(this[i], i, this));
+  }
+  // Only change code above this line
+  return newArray;
+};
+//************************************************************************************************************
+//************************************************************************************************************
