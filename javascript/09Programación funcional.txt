@@ -516,7 +516,70 @@ function nonMutatingSort(arr) {
 nonMutatingSort(globalArray);
 
 //************************************************************************************************************
+//************uso split con expresion regular*************************************************************************************
+function splitify(str) {
+  // Cambia solo el código debajo de esta línea
+  return str.split(/\W/)
+
+  // Cambia solo el código encima de esta línea
+}
+
+splitify("Hello World,I-am code");
+console.log(splitify("Hello World,I-am code"))
 //************************************************************************************************************
+//********split y join**************************************************************************************
+function sentensify(str) {
+  // Only change code below this line
+  return str
+  .split(/\W/) //saca las palabras separadas
+  .join(" "); //las une en un solo arreglo
+
+  // Only change code above this line
+}
+
+sentensify("May-the-force-be-with-you");
+//************************************************************************************************************
+//*******convierte una cadena title y devuelve la versión con guiones para la URL**************************************************************************************
+// Cambia solo el código debajo de esta línea
+function urlSlug(title) {
+ return title.split(" ") //separa en palabras
+ .filter(substr => substr !== "")
+ .join("-")
+ .toLowerCase();//convierte a minisculas
+
+}
+// Cambia solo el código encima de esta línea
+urlSlug("A Mind Needs Books Like A Sword Needs A Whetstone");
+//************************************************************************************************************
+//*******metodo every****************************************************************************************
+function checkPositive(arr) {
+  // Add your code below this line
+
+  return arr.every(val => val > 0);
+  // Add your code above this line
+}
+checkPositive([1, 2, 3, -4, 5]);
+
+//******otra forma^^^^^***********************************************************************************************
+function checkPositive(arr) {
+  // Add your code below this line
+  return arr.every(function(value) {
+    return value > 0;
+  });
+  // Add your code above this line
+}
+checkPositive([1, 2, 3, -4, 5]);
+//************************************************************************************************************
+//********metodo some chequenado si hay positivo.********************************************************************************************
+function checkPositive(arr) {
+  // Cambia solo el código debajo de esta línea
+  return arr.some(item=>item >0)
+
+  // Cambia solo el código encima de esta línea
+}
+
+checkPositive([1, 2, 3, -4, 5]);
+
 
 
 
