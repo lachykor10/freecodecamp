@@ -1,0 +1,29 @@
+//se pone antes de todo en html para que el codigo se ejecute antes.
+<script>$(document).ready(function() {
+
+});
+</script>
+
+addClass() //de jQuery, que te permite agregar clases a los elementos.
+
+$("button").addClass("animated bounce");//ejemplo rebote animado a un elemento.
+$(".well").addClass("animated shake");//ejemplo rebote animado a una clase.
+$("#target6").addClass("animated fadeOut");//ejemplo rebote animado a un id.
+
+$("button").addClass("animated");//Agrega la clase animated a todos los elementos con el tipo button.
+$(".btn").addClass("shake");//Agrega la clase shake a todos los botones con la clase .btn
+$("#target1").addClass("btn-primary");//Agrega la clase btn-primary al botón con id #target1
+
+
+removeClass() //elimina elementos.
+
+$("button").removeClass("btn-default"); //eliminando la clase btn-default de todos los elementos button.
+
+.css() // te permite cambiar el CSS de un elemento
+
+$("#target1").css("color", "blue"); //cambiando el elemento id target1 a color azul.
+
+.prop()//desabilita
+$("#target1").prop("disabled", true); //ejemplo de desbilitar todos los id target1
+
+
