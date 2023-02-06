@@ -26,4 +26,32 @@ $("#target1").css("color", "blue"); //cambiando el elemento id target1 a color a
 .prop()//desabilita
 $("#target1").prop("disabled", true); //ejemplo de desbilitar todos los id target1
 
+.html() //permite agregar etiquetas HTML y texto dentro de un elemento.
 
+$("#target4").html("<em>#target4</em>"); //modifica el texto de id target4 con la etiqueta <em> que es para enfatizar el texto dado.
+$("h3").html("<em>jQuery Playground</em>");
+
+.remove() //eliminará completamente un elemento HTML
+$("#target4").remove();//eliminando el elemento html con id target4
+
+.appendTo() //permite seleccionar elementos HTML y agregarlos a otro elemento.
+$("#target2").appendTo("#right-well");//mueve target4 desde "right well" a "left well"
+
+.clone() //que hace una copia de un elemento html.
+$("#target5").clone().appendTo("#left-well"); //Clona tu elemento target5 y lo agrega a left-well.
+
+.parent()//permite acceder al padre del elemento que hayas seleccionado.
+$("#target1").parent().css("background-color", "red");//se le da al padre del elemento #target1 un color de fondo rojo.
+
+.children()//permite acceder a los hijos del elemento que hayas seleccionado.
+$("#right-well").children().css("color", "orange");//le asigna a todos los hijos del elemento right-well, el color naranja.
+
+
+target:nth-child(n)//permite seleccionar todos los enésimos elementos con el tipo de elemento o la clase apuntada.
+$(".target:nth-child(3)").addClass("animated bounce");//Hace que el segundo niño en cada uno de sus elementos de "well" rebote. Debes seleccionar los hijos de los elementos con la clase target.
+
+
+$(".target:even").addClass("animated shake");//even se refiere a la posición de los elementos con un sistema de indexado desde cero en mente
+$(".target:odd").addClass("animated shake");//odd selecciona el segundo elemento (posición 1), cuarto elemento (posición 3), y así sucesivamente
+
+$("body").addClass("animated hinge")//adjuntado clases animated hinge para animacion.
