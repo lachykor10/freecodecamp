@@ -1,1 +1,164 @@
 //SASS
+//nota: Sass permite anidar las reglas CSS, que es una forma útil de organizar una hoja de estilo.
+//mixin es como si fuera una funcion de css
+
+$text-color: red; //ejemplo de declaracion de una variable y asignandole el valor red
+//ejemplo de uso de la variable en un styles
+.blog-post, h2 {
+    color: $text-color;
+  }
+
+//****mixin es un grupo de declaraciones de CSS que pueden reutilizarse a través de la hoja de estilo**************************************************************************************************
+//***ejemplo de creacion y uso de un mixin****pasandole parametros********************************************************************************************
+
+<style type='text/scss'>
+//creando el mixin
+@mixin border-radius($radius){
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+//llamando el mixin anterior creado
+#awesome {
+    @include border-radius(15px);
+}
+
+</style>
+
+<div id="awesome"></div>
+
+//*************************************************************************************************************************************
+//****ejemplo de mixin usando sentensias if y else***********************************************************************************************************************
+<style type='text/scss'>
+//creando el mixin
+@mixin border-stroke($val){
+  @if $val==light{
+    border: 1px solid black;
+  }
+  @else if $val==medium {
+    border: 3px solid black;
+  }
+  @else if $val==heavy {
+    border: 6px solid black;
+  }
+  @else {
+    border: none;
+  }
+}
+
+
+  #box {
+    width: 150px;
+    height: 150px;
+    background-color: red;
+    @include border-stroke(medium);//incluyendo el mixin
+  }
+</style>
+
+<div id="box"></div>
+
+//*************************************************************************************************************************************
+//****ejemplo de mixin usando sentensias for****************************************************************************************
+// notaaaaa:>>>>> #{$i} //es la sintaxis para combinar una variable (i) o cualquiera con texto para hacer una cadena.
+//ejemplo de uso de @for
+<style type='text/scss'>
+
+@for $i from 1 through 6{
+  .text-#{$i} {font-size: 15px * $i;}
+}
+
+</style>
+
+<p class="text-1">Hello</p>
+<p class="text-2">Hello</p>
+<p class="text-3">Hello</p>
+<p class="text-4">Hello</p>
+<p class="text-5">Hello</p>
+
+//otro ejemplo
+@for $i from 1 through 12 {
+  .col-#{$i} { width: 100%/12 * $i; }
+}
+//*************************************************************************************************************************************
+//*****@each que hace un bucle sobre cada elemento de una lista o mapa*******************************************************************************
+//Escribe una directiva @each que recorra una lista: blue, black, red y asigna cada variable a una clase .color-bg, donde la parte color cambia para cada elemento. Cada clase debe establecer el background-color al respectivo color.
+<style type='text/scss'>
+$colors:(color1: blue, color2: black, color3: red);
+@each $key, $color in $colors {
+  .#{$color}-bg {background-color: $color;}
+}
+
+  div {
+    height: 200px;
+    width: 200px;
+  }
+</style>
+
+<div class="blue-bg"></div>
+<div class="black-bg"></div>
+<div class="red-bg"></div>
+
+//*************************************************************************************************************************************
+//*****@while es una opción con funcionalidad similar al bucle while de JavaScript*******************************************************************************
+//Usa @while para crear una serie de clases con diferentes font-sizes.
+//Debe haber 5 clases diferentes desde text-1 hasta text-5. Luego ajusta font-size a 15px multiplicado por el número de índice actual. ¡Asegúrate de evitar un bucle infinito!
+<style type='text/scss'>
+//creando el while
+$x: 1;
+@while $x < 6 {
+  .text-#{$x} { font-size: 15px * $x;}
+  $x: $x + 1;
+}
+
+/*otra ejemplo de lo mismo
+$x: 1;
+@while $x < 13 {
+  .col-#{$x} { width: 100%/12 * $x;}
+  $x: $x + 1;
+}
+*/
+
+
+</style>
+
+<p class="text-1">Hello</p>
+<p class="text-2">Hello</p>
+<p class="text-3">Hello</p>
+<p class="text-4">Hello</p>
+<p class="text-5">Hello</p>
+//*************************************************************************************************************************************
+//*****forma de importar un archivo*****en en cuenta que el guión bajo y la extensión del archivo no son necesarios en la declaración import**********************************************************************
+//
+@import 'variables' //importando el archivo _variables.scss
+
+//*************************************************************************************************************************************
+//*****Hereda un conjunto de estilos CSS a otro elemento*******************************************************************************
+<style type='text/scss'>
+  h3{
+    text-align: center;
+  }
+  .info{
+    width: 200px;
+    border: 1px solid black;
+    margin: 0 auto;
+  }
+
+   //creando la clase info-important la cual hereda las propiedades de la clase info anterior usando @extend
+  .info-important{
+    @extend .info;
+    background-color: magenta;
+  }
+
+
+
+
+</style>
+<h3>Posts</h3>
+<div class="info-important">
+  <p>This is an important post. It should extend the class ".info" and have its own CSS styles.</p>
+</div>
+
+<div class="info">
+  <p>This is a simple post. It has basic styling and can be extended for other uses.</p>
+</div>
