@@ -1,5 +1,26 @@
+
 React usa una extensión de sintaxis de JavaScript llamada JSX
 permite utilizar el poder programático completo de JavaScript dentro de HTML
+//*******Escribe un componente React desde cero********************************************************************************************************
+{/* vvvvv creando la clase MyComponent que hereda las cualidades de React  vvvvvv */}
+class MyComponent extends React.Component{
+  constructor (props){
+    super(props);
+  }
+  {/* vvvvv Renderizando para devolver el div vvvvvv */}
+  render(){
+    return (
+      <div><h1>My First React Component!</h1></div>
+
+    );
+  }
+};
+{/* vvvvv Renderizando al DOM vvvvvv */}
+ReactDOM.render(<MyComponent />, document.getElementById("challenge-node"));
+//****************************************************************************************************************************************
+//****************************************************************************************************************************************
+//****************************************************************************************************************************************
+
 
 { 'this is treated as JavaScript code' } //código que deseas que sea tratado como JavaScript entre llaves
 
@@ -34,5 +55,437 @@ const JSX = (
 //****************************************************************************************************************************************
 //****************************************************************************************************************************************
 //****************************************************************************************************************************************
+const MyComponent = function() {
+return <div>Hello World</div>
+}
+//****************************************************************************************************************************************
+//****************************************************************************************************************************************
+//****************************************************************************************************************************************
+//forma de definir un componente React es con la sintaxis de clase de ES6 class. En el siguiente ejemplo, Kitten hereda de React.Component:
+//creando la clase Kitten que hereda de la clase React.Component usando el metodo extends
+
+class Kitten extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <h1>Hi</h1>
+    );
+  }
+}
+//****************************************************************************************************************************************
+//****Crear un componente con composición**********************************************************************************************************************
+const ChildComponent = () => {
+  return (
+    <div>
+      <p>I am the child</p>
+    </div>
+  );
+};
+
+class ParentComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h1>I am the parent</h1>
+        { /* Agregando para renderizar ChildComponent */ }
+        <ChildComponent />
+
+        { /* Cambia el código encima de esta línea */ }
+      </div>
+    );
+  }
+};
+//****************************************************************************************************************************************
+//******Utiliza React para procesar componentes anidados**********************************************************************************
+const TypesOfFruit = () => {
+  return (
+    <div>
+      <h2>Fruits:</h2>
+      <ul>
+        <li>Apples</li>
+        <li>Blueberries</li>
+        <li>Strawberries</li>
+        <li>Bananas</li>
+      </ul>
+    </div>
+  );
+};
+
+const Fruits = () => {
+  return (
+    <div>
+      { /* anidando TypesOfFruit  */ }
+      <TypesOfFruit />
+      { /* Cambia el código encima de esta línea */ }
+    </div>
+  );
+};
+
+class TypesOfFood extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Types of Food:</h1>
+        { /* anidando Fruits */ }
+        <Fruits />
+        { /* Cambia el código encima de esta línea */ }
+      </div>
+    );
+  }
+};
+//****************************************************************************************************************************************
+//**********Compón componentes de React***************************************************************************************************
+class Fruits extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h2>Fruits:</h2>
+        { /* Cambia el código debajo de esta línea */ }
+        <NonCitrus />
+        <Citrus />
+        { /* Cambia el código encima de esta línea */ }
+      </div>
+    );
+  }
+};
+
+class TypesOfFood extends React.Component {
+  constructor(props) {
+     super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h1>Types of Food:</h1>
+        { /* Cambia el código debajo de esta línea */ }
+        <Fruits />
+        { /* Cambia el código encima de esta línea */ }
+        <Vegetables />
+      </div>
+    );
+  }
+};
+//****************************************************************************************************************************************
+//******Renderiza un componente de clase al DOM***********************************************************************************************
+//*****recordatorio de la sintaxis: ReactDOM.render(componentToRender, targetNode) para renderizar elementos JSX al DOM
+//El primer argumento es el componente de React que deseas renderizar. El segundo argumento es el nodo del DOM en el que deseas renderizar ese componente.
+//ejemplo, ReactDOM.render(<ComponentToRender />, targetNode)
+/*Los componentes Fruits y Vegetables se definen por ti tras bambalinas. Renderiza ambos componentes como hijos del componente TypesOfFood, y luego renderiza TypesOfFood al DOM. Hay un div con id='challenge-node' disponible para que lo uses.*/
+class TypesOfFood extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h1>Types of Food:</h1>
+        {/* Cambia el código debajo de esta línea */}
+        <Fruits />
+        <Vegetables />
+        {/* Cambia el código encima de esta línea */}
+      </div>
+    );
+  }
+};
+
+// Cambia el código debajo de esta línea
+ReactDOM.render(<TypesOfFood />, document.getElementById("challenge-node"));
+//****************************************************************************************************************************************
+//*******Escribe un componente React desde cero********************************************************************************************************
+{/* vvvvv creando la clase MyComponent que hereda las cualidades de React  vvvvvv */}
+class MyComponent extends React.Component{
+  constructor (props){
+    super(props);
+  }
+  {/* vvvvv Renderizando para devolver el div vvvvvv */}
+  render(){
+    return (
+      <div><h1>My First React Component!</h1></div>
+
+    );
+  }
+};
+{/* vvvvv Renderizando al DOM vvvvvv */}
+ReactDOM.render(<MyComponent />, document.getElementById("challenge-node"));
+//****************************************************************************************************************************************
+//****************************************************************************************************************************************
+//*****Pasa "props" a un componente funcional sin estado*****************************************************************************************
+//*****cómo pasar información desde un componente padre a un componente hijo
+
+const CurrentDate = (props) => {
+  return (
+    <div>
+      { /* Usando la propiedad recivida date a traves de props */ }
+      <p>The current date is: {props.date}</p>
+      { /* Cambia el código encima de esta línea */ }
+    </div>
+  );
+};
+
+class Calendar extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h3>What date is it?</h3>
+        { /* pasando a CurrentDate la propiedad date */ }
+        <CurrentDate date={Date()}/> { /* Date() es una funcion de Javascript que obtiene la fecha */ }
+        { /* Cambia el código encima de esta línea */ }
+      </div>
+    );
+  }
+};
+//****************************************************************************************************************************************
+//*******Pasando un arreglo como props*****************************************************************************************************************
+const List = (props) => {
+  { /* uniendo a todos elementos tasks del arreglo en una cadena separada por comas */ }
+  return <p>{props.tasks.join(', ')}</p>
+  { /* Cambia el código encima de esta línea */ }
+};
+
+{ /* Esto siempre sera lo que se mostrara en HTML */ }
+class ToDo extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h1>To Do Lists</h1>
+        <h2>Today</h2>
+        { /* creando y pasando la propiedad tasks de tipo arreglo en dos ocaciones  */ }
+        <List tasks={["walk dog", "workout"]}/>
+        <h2>Tomorrow</h2>
+        <List tasks={["caminar el perro", "ir al gym", "quimbar"]}/>
+        { /* Cambia el código encima de esta línea */ }
+      </div>
+    );
+  }
+};
+//****************************************************************************************************************************************
+//****************************************************************************************************************************************
+//*******Usa props predeterminadas******************************************************************************************************************
+const ShoppingCart = (props) => {
+  return (
+    <div>
+      <h1>Shopping Cart Component</h1>
+    </div>
+  )
+};
+// Definiendo la props predeterminada para ShoppingCart 
+ShoppingCart.defaultProps ={items: 0};
+//****************************************************************************************************************************************
+//*****Reemplaza las "props" predeterminadas****************************************************************************************************************
+const Items = (props) => {
+  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
+}
+{ /* asignando un valor predeterminado a props */ }
+Items.defaultProps = {
+  quantity: 0
+}
+
+class ShoppingCart extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    { /* remplazando el contenido defaul de quantity que es la props de Items porque le estoy asignando valor de 10 */ }
+    return <Items quantity={10}/>
+    { /* Cambia el código encima de esta línea */ }
+  }
+};
+//****************************************************************************************************************************************
+//******Usa PropTypes para definir las props que esperas**************************************************************************************************************
+const Items = (props) => {
+  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
+};
+
+// propTypes verifica que quantity sea de tipo "number, func, bool, etc" y que tiene que ser requerida
+Items.propTypes={quantity: PropTypes.number.isRequired}
+// Cambia el código encima de esta línea
+
+Items.defaultProps = {
+  quantity: 0
+};
+
+class ShoppingCart extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return <Items />
+  }
+};
+//****************************************************************************************************************************************
+//****************************************************************************************************************************************
+//*****Accede a propiedades "props" usando this.propst {
+  constructor(props) {
+    super(props);
+
+  }
+  render() {
+    return (
+        <div>
+            { /* Cambia el código debajo de esta línea */ }
+            <Welcome name="Lazaro" />
+            { /* Cambia el código encima de esta línea */ }
+        </div>
+    );
+  }
+};
+
+class Welcome extends React.Component {
+  constructor(props) {
+    super(props);
+
+  }
+  render() {
+    return (
+        <div>
+          { /* accediendo a las propiedades usando this.props*/ }
+          <p>Hello, <strong>{this.props.name}</strong>!</p>
+          { /* Cambia el código encima de esta línea */ }
+        </div>
+    );
+  }
+};
+//****************************************************************************************************************************************
+//****************************************************************************************************************************************
+class CampSite extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <Camper/>{ /* llamando al hijo a renderizar */ }
+      </div>
+    );
+  }
+};
+{ /* Definiendo Camper y renderizandolo  */ }
+class Camper extends React.Component {
+  constructor(props){
+    super(props);
+  }
+  render(){
+    return(
+      <p>{this.props.name}</p>{ /* retornando la propiedad */ }
+    );
+  }
+};
+
+{ /* Verificando que la propiedad name sea de tipo string */ }
+Camper.propTypes={name: PropTypes.string.isRequired}
+
+{ /* Asignandole por defecto a la propiedad name la cadena "CamperBot"  */ }
+Camper.defaultProps = {
+  name: "CamperBot"
+};
+//****************************************************************************************************************************************
+//****************************************************************************************************************************************
+//*****Crea un componente de estado**************************************************************************************************************************
+class StatefulComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    // vvvvvcreando el state nota: se crea como tipo object y se usa la palabra thisvvvvvv
+    this.state={
+      firstName: "Lachy"
+    }
+    // vvvvRenderizando el codigovvv
+  }
+  render() {
+    return (
+      <div>
+        <h1>{this.state.firstName}</h1>{ /* mandando a renderizar la propiedad dentro del state */ }
+      </div>
+    );
+  }
+};
+//****************************************************************************************************************************************
+//******Renderiza el estado en la interfaz de usuario***************************************************************************************************************
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'freeCodeCamp'
+    }
+  }
+  render() {
+    return (
+      <div>
+        { /* Cambia el código debajo de esta línea */ }
+        <h1>{this.state.name}</h1>
+        { /* Cambia el código encima de esta línea */ }
+      </div>
+    );
+  }
+};
+//****************************************************************************************************************************************
+//****************************************************************************************************************************************
+//*******Otra manera de renderizar el estado en la interfaz de usuario************************************************************************************************
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'freeCodeCamp'
+    }
+  }
+  render() {
+    // Cambia el código debajo de esta línea
+    const name = this.state.name;
+    // Cambia el código encima de esta línea
+    return (
+      <div>
+        { /* Cambia el código debajo de esta línea */ }
+        <h1>{name}</h1>
+        { /* Cambia el código encima de esta línea */ }
+      </div>
+    );
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
