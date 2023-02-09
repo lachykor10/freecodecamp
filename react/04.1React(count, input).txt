@@ -75,4 +75,128 @@ class ControlledInput extends React.Component {
       </div>
     );
   }
+
 };
+//***************************************************************************************************************
+//***************************************************************************************************************
+//**Crea un formulario controlado*******************************************************************************
+class MyForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: '',
+      submit: ''
+    };
+    // estableciendo los metodos en el this
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  //obtiene el contenido del input y lo pasa al state.
+  handleChange(event) {
+    this.setState({
+      input: event.target.value
+    });
+  }
+  //pasa el valor de la propiedad state.input a state.submit
+  handleSubmit(event) {
+    // Previene que la pagina actualice cuando se le de Submit!
+    event.preventDefault()
+    this.setState({
+      submit: this.state.input//pasando el valor de una propiedad a otra.
+    });
+    // Cambia el código encima de esta línea
+  }
+  render() {
+    return (
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          {/* obteniendo el value del input y mandandolo a handleChange */}
+          <input value={this.state.input} onChange={this.handleChange}></input>
+          {/* Cambia el código encima de esta línea */}
+          <button type='submit'>Submit!</button>
+        </form>
+        {/* renderizando y mostrando el valor de submit */}
+        <h1>{this.state.submit}</h1>
+        {/* Cambia el código encima de esta línea */}
+      </div>
+    );
+  }
+}
+//***************************************************************************************************************
+//***************************************************************************************************************
+//***************************************************************************************************************
+class MyApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'CamperBot'
+    }
+  }
+  render() {
+    return (
+       <div>
+         {/* enviando a Navbar la propiedad name */}
+         <Navbar name={this.state.name} />
+         {/* Cambia el código encima de esta línea */}
+       </div>
+    );
+  }
+};
+
+class Navbar extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+    <div>
+      {/* Renderizo y muestro lo que recivo en props (name) */}
+      <h1>Hello, my name is:{this.props.name} </h1>
+      {/* Cambia el código encima de esta línea */}
+    </div>
+    );
+  }
+};
+//***************************************************************************************************************
+//***************************************************************************************************************
+//*******Pasa una función callback como "props"***********************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
