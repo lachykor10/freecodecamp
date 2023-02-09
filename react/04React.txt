@@ -447,23 +447,178 @@ class MyComponent extends React.Component {
     }
   }
   render() {
-    // Cambia el código debajo de esta línea
+    // accediendo al state propio
     const name = this.state.name;
     // Cambia el código encima de esta línea
     return (
       <div>
-        { /* Cambia el código debajo de esta línea */ }
+        { /* retornando la variable */ }
         <h1>{name}</h1>
         { /* Cambia el código encima de esta línea */ }
       </div>
     );
   }
 };
+//****************************************************************************************************************************************
+//****************************************************************************************************************************************
+//*******Define el estado con this.setState********************************************************************************************************************
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'Initial State'
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    // actualizando la propiedad name en el componente state usando this.setState().
+    this.setState({
+      name:'React Rocks!'
+    });
+    // Cambia el código encima de esta línea
+  }
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleClick}>Click Me</button>
+        <h1>{this.state.name}</h1>
+      </div>
+    );
+  }
+};
+//****************************************************************************************************************************************
+//****************************************************************************************************************************************
+//***Vincula 'this' a un método de clase*******************************************************************************************************
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: "Hello"
+    };
+    // ligando this al método handleClick() en el constructor del componente
+    this.handleClick = this.handleClick.bind(this);
+    // Cambia el código encima de esta línea
+  }
+  handleClick() {
+    this.setState({
+      text: "You clicked!"
+    });
+  }
+  render() {
+    return (
+      <div>
+        { /* llamando el metodo en el boton */ }
+        <button onClick={this.handleClick}>Click Me</button>
+        { /* Cambia el código encima de esta línea */ }
+        <h1>{this.state.text}</h1>
+      </div>
+    );
+  }
+};
+//****************************************************************************************************************************************
+//****************************************************************************************************************************************
+//****Usa el estado para alternar un elemento*************************************************************************************************************
 
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      visibility: false
+    };
+    // enlazando a this el metodo toggleVisibility 
+    this.toggleVisibility=this.toggleVisibility.bind(this);
+    // Cambia el código encima de esta línea
+  }
+  // Definiendo el Metodo toggleVisibility que alterna la propiedad visibility en true o false al accionar el boton.Note que comienza inicializada en false.
+  toggleVisibility(){
+    this.setState(state => {
+      if(state.visibility===true){
+        return {visibility: false};
+      }
+      else{
+        return {visibility: true};
+      }
+    });
+  }
+  // Validando si se encuentra la propiedad visibility en el state la renderizo a true.
+  render() {
+    if (this.state.visibility) {
+      return (
+        <div>
+          <button onClick={this.toggleVisibility}>Click Me</button>
+          <h1>Now you see me!</h1>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <button onClick={this.toggleVisibility}>Click Me</button>
+        </div>
+      );
+    }
+  }
+}
 
+//ejemplosVVVVVVVVVVVVVVV
+this.setState((state, props) => ({
+  counter: state.counter + props.increment
+}));
+También puedes usar un formulario sin props si necesitas solo el state:
 
+this.setState(state => ({
+  counter: state.counter + 1
+}));
+//ejemplo^^^^^^^^^^^^^^^^^^
+//****************************************************************************************************************************************
+//****************************************************************************************************************************************
+//****Escribe un contador simple****MUY COMPLETO***************************************************************************************
+class Counter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0
+    };
+    // enlazando a this los metodos a usar 
+    this.increment=this.increment.bind(this);
+    this.decrement=this.decrement.bind(this);
+    this.reset=this.reset.bind(this);
+    // Cambia el código encima de esta línea
+  }
+  // definiendo el metodo increment el cual incrementa en 1 el contenido de la propiedad count en el state.
+  increment(){
+    this.setState(state=>({
+      count: state.count+1
+    }));
+  }
+// definiendo el metodo decrement el cual decrementa en 1 el contenido de la propiedad count en el state.
+  decrement(){
+    this.setState(state=>({
+      count: state.count-1
+    }));
+  }
+// definiendo el metodo reset el cual resetea a 0 la propiedad count en el state.
+  reset(){
+    this.setState({
+      count:0
+    });
+  }
 
-
+  // renderizando el contenido a mostrar en HTML
+  render() {
+    return (
+      <div>
+        <button className='inc' onClick={this.increment}>Increment!</button>{ /* llamando el metodo increment al accionar el boton */ }
+        <button className='dec' onClick={this.decrement}>Decrement!</button>{ /* llamando el metodo decrement al accionar el boton */ }
+        <button className='reset' onClick={this.reset}>Reset</button>{ /* llamando el metodo reset al accionar el boton */ }
+        <h1>Current Count: {this.state.count}</h1>{ /* muestra el contenido de la propiedad count del state */ }
+      </div>
+    );
+  }
+};
+//***************************************************************************************************************
+//***************************************************************************************************************
+//****Crea una entrada controlada**(USO DEL INPUT)*********************************************************************************************
+continua en el otro archivo
 
 
 

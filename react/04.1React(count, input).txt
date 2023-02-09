@@ -1,0 +1,78 @@
+//****************************************************************************************************************************************
+//****************************************************************************************************************************************
+//****Escribe un contador simple****MUY COMPLETO***************************************************************************************
+class Counter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0
+    };
+    // enlazando a this los metodos a usar 
+    this.increment=this.increment.bind(this);
+    this.decrement=this.decrement.bind(this);
+    this.reset=this.reset.bind(this);
+    // Cambia el código encima de esta línea
+  }
+  // definiendo el metodo increment el cual incrementa en 1 el contenido de la propiedad count en el state.
+  increment(){
+    this.setState(state=>({
+      count: state.count+1
+    }));
+  }
+// definiendo el metodo decrement el cual decrementa en 1 el contenido de la propiedad count en el state.
+  decrement(){
+    this.setState(state=>({
+      count: state.count-1
+    }));
+  }
+// definiendo el metodo reset el cual resetea a 0 la propiedad count en el state.
+  reset(){
+    this.setState({
+      count:0
+    });
+  }
+
+  // renderizando el contenido a mostrar en HTML
+  render() {
+    return (
+      <div>
+        <button className='inc' onClick={this.increment}>Increment!</button>{ /* llamando el metodo increment al accionar el boton */ }
+        <button className='dec' onClick={this.decrement}>Decrement!</button>{ /* llamando el metodo decrement al accionar el boton */ }
+        <button className='reset' onClick={this.reset}>Reset</button>{ /* llamando el metodo reset al accionar el boton */ }
+        <h1>Current Count: {this.state.count}</h1>{ /* muestra el contenido de la propiedad count del state */ }
+      </div>
+    );
+  }
+};
+//***************************************************************************************************************
+//***************************************************************************************************************
+//*****Crea una entrada controlada**INPUT MUY IMPORTANTE****************************************************************************************
+class ControlledInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: ''
+    };
+    // estableciendo el metodo en this
+    this.handleChange=this.handleChange.bind(this);
+    // Cambia el código encima de esta línea
+  }
+  // definiendo el metodo handleChange que recibe el parametro event con el cual  se actualiza la propiedad input del state
+  handleChange(event){
+    this.setState({
+      input: event.target.value
+    })
+  }
+  // Cambia el código encima de esta línea
+  render() {
+    return (
+      <div>
+        { /* se guarda en value el contenido del input y se llama el metodo handleChange el cual se le pasa value */}
+        <input value={this.state.input} onChange={this.handleChange}></input>
+        { /* Cambia el código encima de esta línea */}
+        <h4>Controlled Input:</h4>
+        <p>{this.state.input}</p>
+      </div>
+    );
+  }
+};
