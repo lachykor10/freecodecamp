@@ -160,12 +160,480 @@ class Navbar extends React.Component {
 //***************************************************************************************************************
 //***************************************************************************************************************
 //*******Pasa una función callback como "props"***********************************************************************
+const inputStyle = {
+  width: 235,
+  margin: 5
+};
+
+class MagicEightBall extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userInput: '',
+      randomIndex: ''
+    };
+    this.ask = this.ask.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+  ask() {
+    if (this.state.userInput) {
+      this.setState({
+        randomIndex: Math.floor(Math.random() * 20),
+        userInput: ''
+      });
+    }
+  }
+  handleChange(event) {
+    this.setState({
+      userInput: event.target.value
+    });
+  }
+  render() {
+    const possibleAnswers = [
+      'It is certain',
+      'It is decidedly so',
+      'Without a doubt',
+      'Yes, definitely',
+      'You may rely on it',
+      'As I see it, yes',
+      'Outlook good',
+      'Yes',
+      'Signs point to yes',
+      'Reply hazy try again',
+      'Ask again later',
+      'Better not tell you now',
+      'Cannot predict now',
+      'Concentrate and ask again',
+      "Don't count on it",
+      'My reply is no',
+      'My sources say no',
+      'Most likely',
+      'Outlook not so good',
+      'Very doubtful'
+    ];
+    const answer = possibleAnswers[this.state.randomIndex]; // Cambia esta línea
+    return (
+      <div>
+        <input
+          type='text'
+          value={this.state.userInput}
+          onChange={this.handleChange}
+          style={inputStyle}
+        />
+        <br />
+        <button onClick={this.ask}>Ask the Magic Eight Ball!</button>
+        <br />
+        <h3>Answer:</h3>
+        <p>
+          {/* Cambia el código debajo de esta línea */}
+          {answer}
+          {/* Cambia el código encima de esta línea */}
+        </p>
+      </div>
+    );
+  }
+}
+
+//***************************************************************************************************************
+//***************************************************************************************************************
+//*****************Usa JavaScript avanzado en el método render de React*************************************
+const inputStyle = {
+  width: 235,
+  margin: 5
+};
+
+class MagicEightBall extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userInput: '',
+      randomIndex: ''
+    };
+    this.ask = this.ask.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+  ask() {
+    if (this.state.userInput) {
+      this.setState({
+        randomIndex: Math.floor(Math.random() * 20),
+        userInput: ''
+      });
+    }
+  }
+  handleChange(event) {
+    this.setState({
+      userInput: event.target.value
+    });
+  }
+  render() {
+    const possibleAnswers = [
+      'It is certain',
+      'It is decidedly so',
+      'Without a doubt',
+      'Yes, definitely',
+      'You may rely on it',
+      'As I see it, yes',
+      'Outlook good',
+      'Yes',
+      'Signs point to yes',
+      'Reply hazy try again',
+      'Ask again later',
+      'Better not tell you now',
+      'Cannot predict now',
+      'Concentrate and ask again',
+      "Don't count on it",
+      'My reply is no',
+      'My sources say no',
+      'Most likely',
+      'Outlook not so good',
+      'Very doubtful'
+    ];
+    const answer = possibleAnswers[this.state.randomIndex]; // Cambia esta línea
+    return (
+      <div>
+        <input
+          type='text'
+          value={this.state.userInput}
+          onChange={this.handleChange}
+          style={inputStyle}
+        />
+        <br />
+        <button onClick={this.ask}>Ask the Magic Eight Ball!</button>
+        <br />
+        <h3>Answer:</h3>
+        <p>
+          {/* Cambia el código debajo de esta línea */}
+          {answer}
+          {/* Cambia el código encima de esta línea */}
+        </p>
+      </div>
+    );
+  }
+}
+//***************************************************************************************************************
+//***************************************************************************************************************
+//******Renderiza con una condición If-Else***********************************************************************************
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      display: true
+    }
+    this.toggleDisplay = this.toggleDisplay.bind(this);
+  }
+  toggleDisplay() {
+    this.setState((state) => ({
+      display: !state.display
+    }));
+  }
+  render() {
+    // Cambia el código debajo de esta línea
+    if(this.state.display){
+      return (
+       <div>
+         <button onClick={this.toggleDisplay}>Toggle Display</button>
+         <h1>Displayed!</h1>
+       </div>
+    );
+    }
+    else {
+      return (
+       <div>
+         <button onClick={this.toggleDisplay}>Toggle Display</button>       
+       </div>
+    );
+    }
+    
+  }
+};
+//***************************************************************************************************************
+//*****Usa && para una condicional más concisa******{/* if/else, &&, y el operador ternario (condition ? expressionIfTrue : expressionIfFalse)  */}***************************************************
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      display: true
+    }
+    this.toggleDisplay = this.toggleDisplay.bind(this);
+  }
+  toggleDisplay() {
+    this.setState(state => ({
+      display: !state.display
+    }));
+  }
+  render() {
+    // Cambia el código debajo de esta línea
+    return (
+       <div>
+         <button onClick={this.toggleDisplay}>Toggle Display</button>
+         {this.state.display && <h1>Displayed!</h1>}{/* Solo se mostrara el h1 si la condicion es true */}
+       </div>
+    );
+  }
+};
+//***************************************************************************************************************
+//***************************************************************************************************************
+//****Utiliza una expresión ternaria para el renderizado condicional**********************************************
+const inputStyle = {
+  width: 235,
+  margin: 5
+};
+
+class CheckUserAge extends React.Component {
+  constructor(props) {
+    super(props);
+    // Cambia el código debajo de esta línea
+    this.state ={
+      input: '',
+      userAge: ''
+    }
+    // Cambia el código encima de esta línea
+    this.submit = this.submit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(e) {
+    this.setState({
+      input: e.target.value,
+      userAge: ''
+    });
+  }
+  submit() {
+    this.setState(state => ({
+      userAge: state.input
+    }));
+  }
+  render() {
+    const buttonOne = <button onClick={this.submit}>Submit</button>;
+    const buttonTwo = <button>You May Enter</button>;
+    const buttonThree = <button>You Shall Not Pass</button>;
+    return (
+      <div>
+        <h3>Enter Your Age to Continue</h3>
+        <input
+          style={inputStyle}
+          type='number'
+          value={this.state.input}
+          onChange={this.handleChange}
+        />
+        <br />
+        {/* Condiciones para renderizar */}
+        {
+          this.state.userAge===''
+          ? buttonOne
+            : this.state.userAge >= 18
+            ? buttonTwo
+            : buttonThree
+        }
+        {/* if/else, &&, y el operador ternario (condition ? expressionIfTrue : expressionIfFalse)  */}
+      </div>
+    );
+  }
+}
+//***************************************************************************************************************
+//***************************************************************************************************************
+//*******Renderiza condicionalmente a partir de "props"*******************************************************
+class Results extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    {/* Cambia el código debajo de esta línea */}
+    return <h1>{this.props.fiftyFifty ? "You Win!" : "Tu Pierdes!"}</h1>;
+    {/* Cambia el código encima de esta línea */}
+  }
+}
+
+class GameOfChance extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      counter: 1
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    this.setState(() => {
+      // Completa la sentencia return:
+      return {
+        counter: this.state.counter +1
+      }
+    });
+  }
+  render() {
+    const expression = Math.random() >= 0.5 ? true : false; // Cambia esta línea
+    return (
+      <div>
+        <button onClick={this.handleClick}>Play Again</button>
+        {/* Cambia el código debajo de esta línea */}
+        <Results fiftyFifty={expression} />
+        {/* Cambia el código encima de esta línea */}
+        <p>{'Turn: ' + this.state.counter}</p>
+      </div>
+    );
+  }
+}
+//***************************************************************************************************************
+//***************************************************************************************************************
+//*****Cambia el CSS inline condicionalmente según el estado del componente**********************************************************
+class GateKeeper extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: ''
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(event) {
+    this.setState({ input: event.target.value })
+  }
+  render() {
+    let inputStyle = {
+      border: '1px solid black'
+    };
+    // change code below this line
+    if (this.state.input.length > 15) {
+      inputStyle.border = '3px solid red';
+    }
+    // change code above this line
+    return (
+      <div>
+        <h3>Don't Type Too Much:</h3>
+        <input
+          type="text"
+          style={inputStyle}
+          value={this.state.input}
+          onChange={this.handleChange} />
+      </div>
+    );
+  }
+};
+
+//***************************************************************************************************************
+//***************************************************************************************************************
+//****Utiliza Array.map() para renderizar dinámicamente los elementos***************************************************
+
+
+const textAreaStyles = {
+  width: 235,
+  margin: 5
+};
+
+class MyToDoList extends React.Component {
+  constructor(props) {
+    super(props);
+    // change code below this line
+    this.state = {
+      userInput: '',
+      toDoList: []
+    }
+    // change code above this line
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleSubmit() {
+    const itemsArray = this.state.userInput.split(',');
+    this.setState({
+      toDoList: itemsArray
+    });
+  }
+  handleChange(e) {
+    this.setState({
+      userInput: e.target.value
+    });
+  }
+  render() {
+    const items = this.state.toDoList.map(i => <li>{i}</li>); // change code here
+    return (
+      <div>
+        <textarea
+          onChange={this.handleChange}
+          value={this.state.userInput}
+          style={textAreaStyles}
+          placeholder="Separate Items With Commas" /><br />
+        <button onClick={this.handleSubmit}>Create List</button>
+        <h1>My "To Do" List:</h1>
+        <ul>
+          {items}
+        </ul>
+      </div>
+    );
+  }
+};
 
 
 
 
 
+const frontEndFrameworks = [
+  'React',
+  'Angular',
+  'Ember',
+  'Knockout',
+  'Backbone',
+  'Vue'
+];
 
+function Frameworks() {
+const renderFrameworks = frontEndFrameworks.map(
+    (i) =>
+      <li key={i.toString()}>{i}</li>
+   ); 
+  return (
+    <div>
+      <h1>Popular Front End JavaScript Frameworks</h1>
+      <ul>
+        {renderFrameworks}
+      </ul>
+    </div>
+  );
+};
+
+//***************************************************************************************************************
+//***************************************************************************************************************
+//***Use Array.filter() to Dynamically Filter an Array*******************************************************************
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      users: [
+        {
+          username: 'Jeff',
+          online: true
+        },
+        {
+          username: 'Alan',
+          online: false
+        },
+        {
+          username: 'Mary',
+          online: true
+        },
+        {
+          username: 'Jim',
+          online: false
+        },
+        {
+          username: 'Sara',
+          online: true
+        },
+        {
+          username: 'Laura',
+          online: true
+        }
+      ]
+    };
+  }
+  render() {
+    const usersOnline = this.state.users.filter(user => user.online === true); // Change this line
+    const renderOnline = usersOnline.map(user => <li key={user.username}>{user.username}</li>); // Change this line
+    return (
+      <div>
+        <h1>Current Online Users:</h1>
+        <ul>{renderOnline}</ul>
+      </div>
+    );
+  }
+}
 
 
 

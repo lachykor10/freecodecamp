@@ -1,0 +1,28 @@
+//***********************************************************************************************
+//******Introducción a los estilos en línea*********************************************************************
+//ejemplo de un estilo en línea en HTML
+<div style="color: yellow; font-size: 16px">Mellow Yellow</div>
+//tambien se puede establecer igual a un object de JavaScript. Aquí un ejemplo:
+style={{color: "yellow", fontSize: 16}}>Mellow Yellow</div>
+
+class Colorful extends React.Component {
+  render() {
+    return (
+      <div style={{color: "red", fontSize:"72px"}}>Big Red</div>
+    );
+  }
+};
+//***********************************************************************************************
+//***Agrega inline styles en React***************************************************************************
+
+const styles={color: "purple", fontSize: 40, border: "2px solid purple" }
+// object de estilos ^^^^^^^^^^^^^^^^^^
+class Colorful extends React.Component {
+  render() {
+    // pasandole el objeto de estilos al div
+    return (
+      <div style={styles}>Style Me!</div>
+    );
+    // Cambia el código encima de esta línea
+  }
+};
