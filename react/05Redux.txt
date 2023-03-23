@@ -1,0 +1,39 @@
+//******************Crea un almacén Redux
+const reducer = (state = 5) => {
+  return state;
+}
+let store = Redux.createStore(reducer);
+
+//********Obtén el estado del almacén Redux
+const store = Redux.createStore(
+  (state = 5) => state
+);
+let currentState = store.getState();
+
+//**********Declara un objeto action y dale una propiedad type establecida a la cadena 'LOGIN'.
+let action ={
+  type:'LOGIN'
+}
+
+//******Define un creador de acción
+const action = {
+  type: 'LOGIN'
+}
+// Define un creador de acción aquí:
+function actionCreator(){
+  return action;
+}
+
+
+//******Dispatch an Action Event****Envía la acción LOGIN al almacén Redux llamando al método dispatch, y pasa la acción creada por loginAction().
+const store = Redux.createStore(
+  (state = {login: false}) => state
+);
+
+const loginAction = () => {
+  return {
+    type: 'LOGIN'
+  }
+};
+
+store.dispatch(loginAction());
