@@ -1,0 +1,121 @@
+//.test() toma la expresión regular, la aplica a una cadena (que se coloca dentro de los paréntesis), y devuelve true o false si tu patrón encuentra algo o no.
+
+let testStr = "freeCodeCamp";
+let testRegex = /Code/;
+testRegex.test(testStr);
+//El método test aquí^^^^^^^^ devuelve true.
+//otro ejemplo
+let testStr = "Hello, my name is Kevin.";
+let testRegex = /Kevin/;//Puedes buscar múltiples patrones usando el operador alternation o OR: | ejemplo: /dog|cat|bird|fish/ ejemplo:/ignorecase/i. Esta expresión regular puede coincidir con las cadenas ignorecase, igNoreCase e IgnoreCase
+testRegex.test(testStr);
+//esto devuelve true
+**********************************************
+//También puedes extraer las coincidencias encontradas con el método .match()
+"Hello, World!".match(/Hello/);
+let ourStr = "Regular expressions";
+let ourRegex = /expressions/;
+ourStr.match(ourRegex);
+//extraer un patrón más de una vez, puedes utilizar la bandera g
+let repeatRegex = /Repeat/g; //En tu expresión regular puedes utilizar múltiples banderas, como /Repeat/gi
+testStr.match(repeatRegex);
+//lo anterior^^^ devolvera un arreglo con los datos coincidientes.
+********************************************************************
+//si quieres hacer coincidir hug, huh, hut, y hum, puedes usar la la expresión regular /hu./ para que coincida con las cuatro palabras.
+let humStr = "I'll hum a song";
+let hugStr = "Bear hug";
+let huRegex = /hu./;
+huRegex.test(humStr);
+huRegex.test(hugStr);
+^*************************************************************
+//la expresión regular /b[aiu]g/ para hacer esto. [aiu] es la clase de caracteres que solo coincidirá con los caracteres a, i, o u.
+//ejemplo
+let bigStr = "big";
+let bagStr = "bag";
+let bugStr = "bug";
+let bogStr = "bog";
+let bgRegex = /b[aiu]g/;
+bigStr.match(bgRegex);
+bagStr.match(bgRegex);
+bugStr.match(bgRegex);
+bogStr.match(bgRegex);
+//En orden,esto^^^^ las cuatro llamadas de match devolverán los valores ["big"], ["bag"], ["bug"], and null.
+*******************************************
+//Por ejemplo, /[0-5]/ coincide con cualquier número entre 0 y 5, incluyendo 0 y 5.
+//Además, es posible combinar un rango de letras y números en un único conjunto de caracteres.
+let jennyStr = "Jenny8675309";
+let myRegex = /[a-z0-9]/ig;
+jennyStr.match(myRegex);
+//caracteres negados colocas un carácter de intercalación (^) después del corchete de apertura y antes de los caracteres que no quieres coincidir.
+//Por ejemplo, /[^aeiou]/gi coincide con todos los caracteres que no son una vocal. 
+let quoteSample = "3 blind mice.";
+let myRegex = /[^0-9aeiou]/gi; //expresión regular coincide con todos los caracteres que NO son un número o una vocal 
+let result = quoteSample.match(myRegex);
+*****************************************************************
+/\w+/     /\W+/      /\d/g/    //expresiones regulares match() y test()
+
+//VVVvvvvvejemplo de expresion regular compleja
+/^[a-z][a-z]+\d*$|^[a-z]\d\d+$/i // Los nombres de usuario sólo pueden utilizar caracteres alfanuméricos. Los únicos números del nombre de usuario tienen que estar al final. Puede tener un cero o más al final. El nombre de usuario no puede iniciar con un número.Las letras del nombre de usuario pueden ser minúsculas y mayúsculas. Los nombres de usuario deben tener al menos dos caracteres. Un nombre de usuario de dos caracteres sólo puede utilizar letras del alfabeto como caracteres.
+//explicacion de lo de arriba expresiones regulares
+^ - start of input
+[a-z] - first character is a letter
+[a-z]+ - following characters are letters
+\d*$ - input ends with 0 or more digits
+| - or
+^[a-z] - first character is a letter
+\d\d+ - following characters are 2 or more digits
+$ - end of input
+-------------------------------
+/^[a-z]([0-9]{2,}|[a-z]+\d*)$/i; //
+
+^ - start of input
+[a-z] - first character is a letter
+[0-9]{2,} - ends with two or more numbers
+| - or
+[a-z]+ - has one or more letters next
+\d* - and ends with zero or more numbers
+$ - end of input
+i - ignore case of input
+----------------------------------------------------
+\\Puedes buscar los espacios en blanco usando \s
+let whiteSpace = "Whitespace. Whitespace everywhere!"
+let spaceRegex = /\s/g;
+whiteSpace.match(spaceRegex);
+
+\\puedes Buscar caracteres que no sean espacios en blanco usando \S
+let whiteSpace = "Whitespace. Whitespace everywhere!"
+let nonSpaceRegex = /\S/g;
+whiteSpace.match(nonSpaceRegex).length;
+
+//Por ejemplo, para hacer coincidir solo con la cadena hah cuando la letra a aparezca al menos 3 veces, la expresión regular sería /ha{3,}h/
+let A4 = "haaaah";
+let A2 = "haah";
+let A100 = "h" + "a".repeat(100) + "h";
+let multipleA = /ha{3,}h/;
+multipleA.test(A4);
+multipleA.test(A2);
+multipleA.test(A100);
+
+
+//para que coincida con la palabra hah solo con la letra a 3 veces, tu expresión regular sera /ha{3}h/.
+let A3 = "haaah";
+let multipleHA = /ha{3}h/;
+
+//Un uso más práctico de lookaheads es comprobar dos o más patrones en una cadena. Aquí hay un verificador de contraseñas (ingenuamente) simple que busca entre 3 y 6 caracteres y al menos un número:
+
+let password = "abc123";
+let checkPass = /(?=\w{3,6})(?=\D*\d)/;
+checkPass.test(password);
+
+//Ejemplo de lookaheads que coincide con las contraseñas que tengan más de 5 caracteres y dos dígitos consecutivos.
+let sampleWord = "astronaut";
+let pwRegex = /(?=\w{6})(?=\w*\d{2})/; // Cambia esta línea
+let result = pwRegex.test(sampleWord);
+
+
+//Si deseas encontrar Penguin o Pumpkin en una cadena, puedes usar la siguiente expresión regular:
+ /P(engu|umpk)in/g
+
+
+let myString = "Eleanor Roosevelt";
+let myRegex = /(Franklin|Eleanor) (([A-Z]\.?|[A-Z][a-z]+) )?Roosevelt/;
+let result = myRegex.test(myString);

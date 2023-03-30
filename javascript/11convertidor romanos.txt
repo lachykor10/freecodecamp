@@ -1,0 +1,64 @@
+function convertDigit(num, mag) {
+    /*
+
+    Toma dígitos y lugar/magnitud (unidades = 0, decenas = 1, centenas = 2) y los convierte a números romanos. Solo funciona para dígitos en estos lugares.
+
+    I = 1
+    V = 5
+    X = 10
+    L = 50
+    C = 100
+    D = 500
+    M = 1000
+     */
+
+    //No filtrar por números de un solo dígito, números positivos o magnitudes distintas de 0, 1 o 2, ya que esto solo se llama en la función más grande.
+
+    let romans = ["I", "V", "X", "L", "C", "D", "M"];
+    let index = 2 * mag;
+    if (num === 0) {
+        return "";
+    }
+    if (num >= 1 && num <= 3) {
+        return romans[index].repeat(num);
+    }
+    if (num === 4) {
+        return romans[index] + romans[index+1];
+    }
+    if (num === 5) {
+        return romans[index+1];
+    }
+    if (num >= 6 && num <= 8) {
+        return romans[index+1] + romans[index].repeat(num-5);
+    }
+    if (num === 9) {
+        return romans[index] + romans[index+2];
+    }
+}
+
+function convertToRoman(num) {
+    //Split number into separate digits. Since roman numerals only go up to 1000, convert the digits through the hundreds place using a converter function (that's adaptable to the different orders of magnitude), then add the appropriate number of M's for larger numbers.
+    
+    if (!Number.isInteger(num) || num <= 0) {
+        return "Error: Must give positive integer"
+    }
+
+    let digits = num.toString().split("");
+    let romanArray = [];
+    let mag = 0;
+    let currNum = 0;
+    //While loop to cycle through ones, tens, and hundreds if present
+    while (mag <= 2 && digits.length > 0) {
+        currNum = parseInt(digits.pop()); //Convert array entries from strings to numbers
+        romanArray.unshift(convertDigit(currNum, mag)); //add roman numeral segments in the appropriate order
+        mag++
+    }
+    //Add necessary M's for larger numbers
+    if (digits.length > 0) {
+        romanArray.unshift("M".repeat(parseInt(digits.join(""))))
+    }
+    return romanArray.join("");
+}
+
+
+convertToRoman(36);

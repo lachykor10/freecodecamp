@@ -1,0 +1,50 @@
+//agrega boostrap a HTML
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+//agrega  Font Awesome en cualquier aplicación: 
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+//permite que se ejecute codigo JQuery en HTML
+<script>$(document).ready(function() {
+});
+</script>
+
+//classes de boostrap:
+img-responsive //ajusta la pantalla de nuestro teléfono (div)
+
+<h>vvvvv</h>
+text-center //centra un texto
+text-primary //color default
+text-danger //color rojo default
+<h>^^^^</h>
+
+
+<button>vvvv</button>
+btn btn-default //estilo por defecto para un button
+btn-block //tu botón se estirará para llenar completamente el espacio horizontal de tu página.
+btn-primary //es el color principal que usarás en tu aplicación.
+btn-info //se utiliza para llamar la atención sobre las acciones opcionales
+btn-danger //es el color del botón que usarás para notificar a los usuarios que el botón realiza una acción destructiva, como eliminar
+target //seleciona facil
+<button>^^^^</button>
+
+<div>vvv</div><form></form>
+container-fluid //ajusta el cuerpo html al dispositivo.
+row //agrupa todo los elementos en una fila.
+col-md-* //md significa mediano y * es un número que se especifica cuántas columnas de ancho 
+col-xs-* // donde xs significa extra pequeño * es un número que se especifica cuántas columnas de ancho
+well     //que puede crear una sensación visual de profundidad en tus columnas.
+
+form-control //le da belleza al elemento input de texto
+
+<div>^^^</div><form></form>
+
+//agregar iconos Font Awesome  //no es necesario escribir el nombre dentro del i, solo basta poner las clases, se pone en lado de la etiqueta.
+<i></i>
+fas fa-info-circle //circulito de info
+fas fa-thumbs-up //manito de like
+fas fa-trash //papelera
+fa fa-paper-plane //icono de envio sobresito
+<i></i>
+
+

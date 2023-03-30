@@ -1,0 +1,268 @@
+//metodos mas usados
+objeto instanceof Constructor; //comprueba sin objt fue hecho con el constructor Dado.
+isPrototypeOf //ejemplo: Bird.prototype.isPrototypeOf(duck);
+let animal = Object.create(Animal.prototype); //ejemplo de como se crea un objeto hijo de un prototipo.
+Bird.prototype = Object.create(Animal.prototype); //asigando un hijo como erencia
+Bird.prototype.constructor=Bird; //se debe definir siempre el constructor de cada objeto creado, ya que por defecto siempre adquiere el del padre.
+Dog.prototype.constructor= Dog;//se debe definir siempre el constructor de cada objeto creado, ya que por defecto siempre adquiere el del padre.
+//Nota: Los metodos y funciones nombrados y creados iguales en los hijos remplazan los metodos y funciones que fueron heredados de los padres y la adquieren para su propio uso
+
+//***objeto con metodo incluido********************
+let duck = {
+  name: "Aflac",
+  numLegs: 2,
+  sayName: function() {return "The name of this duck is " + duck.name + ".";}
+  //sayName: function() {return "The name of this duck is " + this.name + ".";}	//mejor forma con this, pues si cambian la variable no se afecta el codigo
+};
+duck.sayName();
+//***********Define una función "Constructor"********************************
+//Particularmente los constructores se escriben con letra inicial mayuscula
+function Bird() {
+  this.name = "Albert";
+  this.color = "blue";
+  this.numLegs = 2;
+}
+//******constructor con pase de parametros*************
+function Dog(name, color) {
+  this.name= name;
+  this.color=color;
+  this.numLegs=4;
+}
+let terrier=new Dog("kuku", "black");//creando y pasando parametro.
+
+//*******ejemplo de uso del instanceof********
+let Bird = function(name, color) {
+  this.name = name;
+  this.color = color;
+  this.numLegs = 2;
+}
+let crow = new Bird("Alexis", "black");
+crow instanceof Bird;//Aquí el método instanceof devolverá true.
+//******************************************
+function Bird(name) {
+  this.name = name;
+  this.numLegs = 2;
+}
+
+let canary = new Bird("Tweety");
+let ownProps = [];
+//añade todas las propiedades directas de canari al arreglo ownProps
+for(let propiedades in canary){
+  if(canary.hasOwnProperty(propiedades)){
+    ownProps.push(propiedades);
+  }
+}
+console.log(ownProps)
+//*********uso de prototype se comparten entre TODAS las instancias.*****
+Bird.prototype.numLegs = 2;
+//Ahora todas las instancias de Bird tienen la propiedad numLegs.
+console.log(duck.numLegs);
+console.log(canary.numLegs);
+//***********************************
+//******ejemplo de cómo se agregan las propiedades directas de duck al arreglo ownProps y las propiedades prototype al arreglo prototypeProps:
+function Dog(name) {
+  this.name = name;
+}
+
+Dog.prototype.numLegs = 4;
+
+let beagle = new Dog("Snoopy");
+
+let ownProps = [];
+let prototypeProps = [];
+
+// Cambia solo el código debajo de esta línea
+for(let propiedad in beagle){
+  if(beagle.hasOwnProperty(propiedad)){
+    ownProps.push(propiedad);
+  }else {
+    prototypeProps.push(propiedad);
+  }
+}
+console.log(ownProps);
+console.log(prototypeProps)
+//******Uso de contructor para saber si es de un tipo de objeto.
+function Dog(name) {
+  this.name = name;
+}
+
+function joinDogFraternity(candidate) {
+   if(candidate.constructor ===Dog){
+     return true;
+   }else{
+     return false;
+   }
+}
+//*******************************
+//forma de agregar un propiedad indirecta una por una.
+Bird.prototype.eat = function() {
+  console.log("nom nom nom");
+}
+Bird.prototype.describe = function() {
+  console.log("My name is " + this.name);
+}
+//Una forma más eficiente, De esta forma, las propiedades son añadidas todas a la vez:
+Bird.prototype = {
+  constructor: Bird,
+  numLegs: 2, 
+  eat: function() {
+    console.log("nom nom nom");
+  },
+  describe: function() {
+    console.log("My name is " + this.name);
+  }
+};
+//**************************************
+Bird.prototype.isPrototypeOf(duck); 
+Object.prototype.isPrototypeOf(Dog.prototype);
+//ejemplo de como se usa un padre*************
+function Cat(name) {
+  this.name = name;
+}
+
+Cat.prototype = {
+  constructor: Cat,
+  
+};
+
+function Bear(name) {
+  this.name = name;
+}
+
+Bear.prototype = {
+  constructor: Bear,
+  
+};
+//////////vvvvv creado un supertype llamado Animal
+function Animal() { }
+
+Animal.prototype = {
+  constructor: Animal,
+  eat: function() {
+    console.log("nom nom nom");
+  }
+};
+//*****ejemplo de herencia****************************************
+//aqui queda ejemplificado como Dog hereda de Animal sus metodos y caracteristicas haciendo uso del prototype.
+
+function Animal() { }
+
+Animal.prototype = {
+  constructor: Animal,
+  eat: function() {
+    console.log("nom nom nom");
+  }
+};
+
+function Dog() { }
+
+// Cambia solo el código debajo de esta línea
+Dog.prototype=Object.create(Animal.prototype);
+
+let beagle = new Dog();
+console.log(beagle.eat());
+
+//******Ejemplo donde se cambian los prototipos heredados del padre.
+function Animal() { }
+function Bird() { }
+function Dog() { }
+
+Bird.prototype = Object.create(Animal.prototype);
+Dog.prototype = Object.create(Animal.prototype);
+
+// Cambia solo el código debajo de esta línea
+
+Bird.prototype.constructor=Bird;
+Dog.prototype.constructor= Dog;
+
+let duck = new Bird();
+let beagle = new Dog();
+//**************************************************
+//********EJEMPLO MAS COMPLETO DE LA HERENCIA Y LA DEFINICION DEL PROTOTIPO.
+function Animal() { } //define el prototipo de Animal
+Animal.prototype.eat = function() { console.log("nom nom nom"); };//creando una funcion de Animal
+
+function Dog() { } //define el prototipo de Dog
+
+Dog.prototype=Object.create(Animal.prototype);//definiendo la herencia de hijo Dog de su padre Animal
+Dog.prototype.constructor=Dog; //definiendo el prototype de Dog ya que hay sustituirlo pues por defecto heredo el del padre.
+
+//creando una funcion de Dog
+Dog.prototype.bark=function (){
+  console.log("Woof!");
+}
+
+let beagle = new Dog();
+//***************************************
+//*********MIXIN permite relacionar funciones y metodos entre clases que no tiene herencia o relacion ejemplo pajaro avion.
+//Creando un Mixin ejemplo:
+
+let bird = {
+  name: "Donald",
+  numLegs: 2
+};
+
+let boat = {
+  name: "Warrior",
+  type: "race-boat"
+};
+
+// creando el mixin con una funcion
+let glideMixin = function (obj){
+  obj.glide= function(){
+     console.log("planeoo");
+  }
+}
+//agregando pajaro u bote a el mixin para que usen sus funciones.
+glideMixin(bird);
+glideMixin(boat);
+//*********************************************************
+//*************************************************************
+//*********EJEMPLO DE USO DE UN CLOUSER****protegiendo una variable para que no sea accedida desde cualquiera.
+function Bird() {
+  let weight = 15; //ojo que tiene que ser definida dentro (no usar this)
+  this.getWeight=function(){
+    return weight;
+  }
+}
+let pajaro =new Bird();
+pajaro.getWeight(); //aqui se puso en practica como una variable solo sera accedida desde el metodo.esto se le llama closure.
+//**************************************************************************
+
+//*****FUNCION SIN NOMBRE o IIFE EJECUCION INMEDIATA*******
+(function () {
+  console.log("A cozy nest is ready");
+})();
+//*******************************************
+//********IIFE para crear un módulo*********
+function glideMixin(obj) {
+  obj.glide = function() {
+    console.log("Gliding on the water");
+  };
+}
+function flyMixin(obj) {
+  obj.fly = function() {
+    console.log("Flying, wooosh!");
+  };
+}
+//Podemos agrupar estos mixins ^^^^^ en un módulo de esta forma:
+
+let motionModule = (function () {
+  return {
+    glideMixin: function(obj) {
+      obj.glide = function() {
+        console.log("Gliding on the water");
+      };
+    },
+    flyMixin: function(obj) {
+      obj.fly = function() {
+        console.log("Flying, wooosh!");
+      };
+    }
+  }
+})();//devuelve un objeto motionModule. El objeto devuelto contiene todos los comportamientos de los mixins como propiedades del objeto. 
+//ejemplo de utillizacion
+motionModule.glideMixin(duck);
+duck.glide();
+//***************************************************************************************
+//****************************************************************

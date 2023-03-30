@@ -1,0 +1,341 @@
+console.log(myArray[1][0]) //muestra un arreglo anidado en pantalla
+
+//Arreglos funciones principales
+const myArray = [["John", 23], ["cat", 2]]; //ejemplo de declaracion de un arreglo complejo.
+.push() //toma uno o más parámetros y los "empuja" al final del arreglo.
+.pop() //elimina el último elemento de un arreglo y devuelve ese elemento.
+.shift() //elimina el primer elemento en lugar del último en el arreglo.
+.unshift() //añade el elemento al principio del arreglo.
+[].hasOwnProperty() //obtiene la propiedad de una arreglo
+Object.freeze(obj) //nadie pueda alterar el valor del obj, añadir o borrar sus propiedades.
+console.log(`Sum of array values is: ${arraySum}`);//ejemplo de imprimir variable en cadena de forma facil.
+
+
+//Ejemplo de Clase en JS ES6 Explicit
+class Vegetable {
+  constructor(name){
+    this.name=name;
+  }
+}
+//Ejemplo de Clase en JS ES6 implicit
+class Rocket {
+  launch() {
+    console.log("To the moon!");
+  }
+}
+
+//FUNCION TIPO FLECHA
+const magic = () => new Date(); //la sintaxis de "función de flecha", te permite omitir la palabra clave return, así como los corchetes que rodean el código. Esto ayuda a simplificar las funciones más pequeñas en sentencias de una sola línea.
+
+const greeting = `Hello, my name is ${person.name}! I am ${person.age} years old.`;//
+
+
+const doubler = (item) => item * 2; //ejemplo pasandole un argumento.
+//Si una función flecha tiene un solo parámetro, los paréntesis que encierran el parámetro pueden ser omitidos.
+const doubler = item => item * 2;
+
+
+//esto se puede cambiar
+const sum = (x, y, z) => {
+  const args = [x, y, z];
+  return args.reduce((a, b) => a + b, 0);
+}
+//por esto de aqui vvvvvvvvvvvv
+const sum = (...args) => args.reduce((a, b) => a + b, 0);//el uso del parámetro rest para los parámetros de función. Con el parámetro rest, puedes crear funciones que tomen un número variable de argumentos. Estos argumentos se almacenan en un arreglo al que se puede acceder más tarde desde dentro de la función.
+
+arr2 = [...arr1];//ejemplo de copiado del contenido de un arreglo en otro usando argumento rest 
+const {today, tomorrow} = HIGH_TEMPERATURES; //forma de sacar de un objeto dada las propiedades.
+const {today:highToday,tomorrow:highTomorrow} =HIGH_TEMPERATURES; //pasar contenido a un objeto.
+
+
+//Así es como se extraen los valores de propiedades de objetos y se los asigna a variables con el mismo nombre:
+const { johnDoe: { age, email }} = user;
+//Y así es como se puede asignar los valores de las propiedades de un objeto a variables con diferentes nombres:
+const { johnDoe: { age: userAge, email: userEmail }} = user;
+
+[a,b] = [b,a];//intercambia valores viceversa (desestructuración de arreglos)
+
+//velo de la siguiente forma vvvvvvvv
+const [a, b, ...arr] = [1, 2, 3, 4, 5, 7]; //si quieres obtener un nuemro del siguiente arreglo das la letra, si quieres obtener el resto usas ...arr, para saltar usas la coma sola.
+
+//La sintaxis es a ? b : c, donde a es la condición, b es el código a ejecutar cuando la condición devuelve true, y c es el código a ejecutar cuando la condición devuelve false.
+a > b ? "a is greater" : "b is greater or equal"; //ejemplo de lo explicado anterior
+//otro ejemplo mas detallado
+function findGreaterOrEqual(a, b) {
+  return (a === b) ? "a and b are equal" 
+    : (a > b) ? "a is greater" 
+    : "b is greater";
+}
+
+
+
+parseInt() //convierte cadena en un entero
+//ejemplo
+const a = parseInt("007");
+
+
+Math.random() //debuelve un numero aleatorio
+
+Math.floor(Math.random() * 20); //Estamos llamando a Math.random(), multiplicando el resultado por 20 y pasando el valor a la función Math.floor() para redondear el valor hacia abajo al número entero más cercano.
+
+
+//ejemplo de funcion
+function functionName() {
+  console.log("Hello World");
+}
+//ejemplo de funcion
+function functionWithArgs(x, y) {
+  console.log(x+y);
+}
+//llamada con parametro de una funcion
+functionWithArgs(5,8)
+
+// ejemplo Muestra el código de un arreglo 
+console.log("Before: " + JSON.stringify(testArr));
+console.log(nextInLine(testArr, 6));
+console.log("After: " + JSON.stringify(testArr));
+
+//condicion de igualdad usada de dos formas
+3 == '3' devuelve true porque JavaScript realiza la conversión de tipo de cadena a número. 3 === '3' devuelve false porque los tipos son diferentes y la conversión de tipo no se realiza.
+
+El operador de desigualdad (!=) es lo opuesto al operador de igualdad. Esto quiere decir que no es igual, y devuelve false cuando la comparación de igualdad devuelva true y vice versa
+El operador de estricta desigualdad !== es el opuesto lógico del operador de estricta igualdad. Esto significa "Estrictamente Desigual",
+
+<,>,>=,<= //operadores de comparacion
+y && devuelve true cuando ambos son positivos, lógico or (||) devuelve true si cualquiera de los operandos es true
+
+//ejemplo de switch
+
+switch (num) {
+  case value1:
+    statement1;
+    break;
+  case value2:
+    statement2;
+    break;
+...
+  default:
+    defaultStatement;
+    break;
+}
+
+//ejemplo de objeto solo de cadenas
+const cat = {
+  "name": "Whiskers",
+  "legs": 4,
+  "tails": 1,
+  "enemies": ["Water", "Dogs"]
+};
+
+//ejemplo de objeto conbinado
+const anotherObject = {
+  make: "Ford",
+  5: "five",
+  "model": "focus"
+};
+
+//elimina una propiedad
+delete myDog.tails;
+//agrega una propiedad 
+myDog.brak="woof";
+
+///WHILE
+//While ejemplo Bucle
+const ourArray = [];
+let i = 0;
+
+while (i < 5) {
+  ourArray.push(i);
+  i++;
+}
+
+//bucle for
+/*for (a; b; c), donde a es la sentencia de inicialización, b es la sentencia condicional, y c es la expresión final*/
+//ejemplo de for
+const ourArray = [];
+
+for (let i = 0; i < 5; i++) {
+  ourArray.push(i);
+}
+//otra forma
+// Configuración
+const myArray = [];
+for(let i=1; i<=5; i++ ){
+  myArray.push(i);
+}
+//otra forma en pares
+const ourArray = [];
+for (let i = 0; i < 10; i += 2) {
+  ourArray.push(i);
+}
+//en pares pero decendiente
+const ourArray = [];
+for (let i = 10; i > 0; i -= 2) {
+  ourArray.push(i);
+}
+
+//for que muestra contenido de un arreglo.
+const arr = [10, 9, 8, 7, 6];
+for (let i = 0; i < arr.length; i++) {
+   console.log(arr[i]);
+}
+//sumando con for
+for(let i=0; i < myArr.length; i++){
+  console.log(myArr[i]);
+  total = total+ myArr[i];
+}
+
+******************************************************************
+function multiplyAll(arr) {
+  let product = 1;
+  // Cambia solo el código debajo de esta línea
+  for(let i=0; i<arr.length; i++){
+    for(let j=0; j<arr[i].length; j++){
+      product *= arr[i][j];
+      console.log(product)
+
+    }
+  
+  }
+  // Cambia solo el código encima de esta línea
+  return product;
+}
+
+multiplyAll([[1, 2], [3, 4], [5, 6, 7]]);
+***********************************************************************
+
+//Do While con condicion de parada
+const ourArray = []; 
+let i = 5;
+
+do {
+  ourArray.push(i);
+  i++;
+} while (i < 5);
+
+***********************************************************************
+// Setup
+const contacts = [
+  {
+    firstName: "Akira",
+    lastName: "Laine",
+    number: "0543236543",
+    likes: ["Pizza", "Coding", "Brownie Points"],
+  },
+  {
+    firstName: "Harry",
+    lastName: "Potter",
+    number: "0994372684",
+    likes: ["Hogwarts", "Magic", "Hagrid"],
+  },
+  {
+    firstName: "Sherlock",
+    lastName: "Holmes",
+    number: "0487345643",
+    likes: ["Intriguing Cases", "Violin"],
+  },
+  {
+    firstName: "Kristian",
+    lastName: "Vos",
+    number: "unknown",
+    likes: ["JavaScript", "Gaming", "Foxes"],
+  },
+];
+
+function lookUpProfile(name, prop) {
+  // Only change code below this line
+  for(let i=0; i<contacts.length;i++){
+    if(contacts[i].firstName===name){
+      if(contacts[i].hasOwnProperty(prop)){
+        return contacts[i][prop]
+        }
+      else {return "No such property"; }
+    
+    }
+  
+  }return "No such contact";
+  // Only change code above this line
+}
+
+lookUpProfile("Akira", "likes");
+*******************************************************************
+
+****funcion que convierte de binario a entero.
+function convertToInteger(str) {
+  return parseInt(str, 2);
+}
+
+;
+console.log(convertToInteger("10011"))
+***********************************************************************
+
+******//funcion de ejemplo que crea conteo regresivo
+function countdown(n) {
+  if (n < 1) {
+    return [];
+  } else {
+    const arr = countdown(n - 1);
+    arr.unshift(n);
+    return arr;
+  }
+}***********
+
+
+********************* ES6
+const person = {
+  name: "Zodiac Hasbro",
+  age: 56
+};
+
+const greeting = `Hello, my name is ${person.name}!
+I am ${person.age} years old.`;
+
+console.log(greeting);
+//La consola mostrará las cadenas Hello, my name is Zodiac Hasbro! y I am 56 years old..
+******************************
+************************************************************
+const result = {
+  success: ["max-length", "no-amd", "prefer-arrow-functions"],
+  failure: ["no-var", "var-on-top", "linebreak"],
+  skipped: ["no-extra-semi", "no-dup-keys"]
+};
+function makeList(arr) {
+  // Cambia solo el código debajo de esta línea
+  const failureItems = [];
+  for(let i=0; i<arr.length; i++){
+    failureItems.push(`<li class="text-warning">${arr[i]}</li>`)
+  }
+  // Cambia solo el código encima de esta línea
+
+  return failureItems;
+}
+
+const failuresList = makeList(result.failure);
+
+*********************************
+
+*************************************
+//Funcion que convierte de Fha a Celsius
+// Cambia solo el código debajo de esta línea
+class Thermostat {
+  constructor (f){
+    this._f=f;
+  }
+  //getter
+  get temperature(){
+    return 5/9 * (this._f - 32);
+  }
+  //setter
+  set temperature(updateF){
+    this._f=updateF * 9.0 / 5 + 32;
+  }
+
+}
+// Cambia solo el código encima de esta línea
+
+const thermos = new Thermostat(76); // Ajuste en escala Farenheit
+let temp = thermos.temperature; // 24.44 en Celsius
+console.log(thermos.temperature)
+thermos.temperature = 26;
+temp = thermos.temperature; // 26 en Celsius
+******************************************************
